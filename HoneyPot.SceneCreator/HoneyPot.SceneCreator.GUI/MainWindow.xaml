@@ -14,10 +14,19 @@
     </Window.Resources>
     <Grid
         DataContext="{StaticResource MainWindowViewModel}">
-        <Grid DataContext="{Binding Path=ManageWindowViewModel}" Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Label>TEST1</Label>
+        <Grid DataContext="{Binding Path=ManageWindowViewModel}"
+              Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Command="{Binding }">New</Button>
+            <Button Grid.Row="1">Load</Button>
         </Grid>
-        <Grid DataContext="{Binding Path=SceneWindowViewModel}" Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid DataContext="{Binding Path=SceneWindowViewModel}"
+              Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Label>TEST2</Label>
         </Grid>
     </Grid>

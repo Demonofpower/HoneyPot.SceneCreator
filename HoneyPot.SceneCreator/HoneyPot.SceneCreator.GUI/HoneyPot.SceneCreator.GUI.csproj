@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\BaseViewModel.cs" />
+    <Compile Include="Helper\RelayCommand.cs" />
     <Compile Include="ManageWindowViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SceneWindowViewModel.cs" />
