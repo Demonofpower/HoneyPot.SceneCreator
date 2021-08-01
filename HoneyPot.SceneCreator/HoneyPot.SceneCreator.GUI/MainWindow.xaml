@@ -10,13 +10,14 @@
         x:Name="Window">
     <Window.Resources>
         <local:MainWindowViewModel x:Key="MainWindowViewModel" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
     <Grid
         DataContext="{StaticResource MainWindowViewModel}">
-        <Grid DataContext="{Binding Path=ManageWindowViewModel}">
+        <Grid DataContext="{Binding Path=ManageWindowViewModel}" Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Label>TEST1</Label>
         </Grid>
-        <Grid DataContext="{Binding Path=SceneWindowViewModel}">
+        <Grid DataContext="{Binding Path=SceneWindowViewModel}" Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Label>TEST2</Label>
         </Grid>
     </Grid>

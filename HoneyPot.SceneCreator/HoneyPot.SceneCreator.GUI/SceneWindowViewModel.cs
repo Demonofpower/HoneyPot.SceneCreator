@@ -1,6 +1,8 @@
-﻿namespace HoneyPot.SceneCreator.GUI
+﻿using HoneyPot.SceneCreator.GUI.Helper;
+
+namespace HoneyPot.SceneCreator.GUI
 {
-    public class SceneWindowViewModel
+    public class SceneWindowViewModel : BaseViewModel
     {
     }
 }

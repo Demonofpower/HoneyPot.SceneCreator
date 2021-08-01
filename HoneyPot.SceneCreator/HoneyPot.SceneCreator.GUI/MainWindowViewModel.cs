@@ -9,6 +9,9 @@
         {
             ManageWindowViewModel = new ManageWindowViewModel();
             SceneWindowViewModel = new SceneWindowViewModel();
+
+            ManageWindowViewModel.Visible = true;
+            SceneWindowViewModel.Visible = false;
         }
     }
 }
