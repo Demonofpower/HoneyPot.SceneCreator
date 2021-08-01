@@ -4,9 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HoneyPot.SceneCreator.GUI"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="800"
+        x:Name="Window">
+    <Window.Resources>
+        <local:MainWindowViewModel x:Key="MainWindowViewModel" />
+    </Window.Resources>
+    <Grid
+        DataContext="{StaticResource MainWindowViewModel}">
+        <Grid DataContext="{Binding Path=ManageWindowViewModel}">
+            <Label>TEST1</Label>
+        </Grid>
+        <Grid DataContext="{Binding Path=SceneWindowViewModel}">
+            <Label>TEST2</Label>
+        </Grid>
     </Grid>
 </Window>
