@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Mime;
 using System.Windows;
@@ -43,7 +44,9 @@ namespace HoneyPot.SceneCreator.GUI
             saveFileDialog.DefaultExt = "txt";
             saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
 
-            var json = JsonConvert.SerializeObject(currScene);
+            currScene.steps = new List<Step>(Steps);
+            
+            var json = JsonConvert.SerializeObject(currScene, Formatting.Indented, new JsonSerializerSettings() {NullValueHandling = NullValueHandling.Ignore});
             
             if (saveFileDialog.ShowDialog() == true)
             {

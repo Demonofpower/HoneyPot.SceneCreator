@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace HoneyPot.SceneCreator.GUI.SceneObjects
 {
@@ -6,6 +8,7 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
     {
         public int id { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public StepType type { get; set; }
 
         public string girl { get; set; }
@@ -28,6 +31,7 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
 
         public string audio { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public GirlExpressionType expression { get; set; }
 
         public string newLoc { get; set; }
