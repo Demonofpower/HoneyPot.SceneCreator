@@ -9,11 +9,10 @@
         Title="MainWindow" Height="450" Width="800"
         x:Name="Window">
     <Window.Resources>
-        <local:MainWindowViewModel x:Key="MainWindowViewModel" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
     <Grid
-        DataContext="{StaticResource MainWindowViewModel}">
+        DataContext="{Binding ElementName=Window, Path=MainWindowViewModel}">
         <Grid DataContext="{Binding Path=ManageWindowViewModel}"
               Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}"
               HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -44,11 +43,23 @@
                 <ListBox Grid.Row="1" x:Name="StepsView"></ListBox>
             </Grid>
 
-            <Grid Grid.Column="1" HorizontalAlignment="Center">
-                <StackPanel>
-                    <Label x:Name="CurrentStepLabel"></Label>
-                    <ComboBox x:Name="CurrentStepTypeComboBox" SelectionChanged="CurrentStepTypeComboBox_OnSelectionChanged"></ComboBox>
-                </StackPanel>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" HorizontalAlignment="Left">
+                    <Button Command="{Binding NewCommand}">New Step</Button>
+                </Grid>
+
+                <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <StackPanel>
+                        <Label x:Name="CurrentStepLabel"></Label>
+                        <ComboBox x:Name="CurrentStepTypeComboBox" SelectionChanged="CurrentStepTypeComboBox_OnSelectionChanged"></ComboBox>
+                    </StackPanel>
+                </Grid>
             </Grid>
 
         </Grid>
