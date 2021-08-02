@@ -33,7 +33,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Grid>
+            <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition />
@@ -42,6 +42,13 @@
                 <Label Grid.Row="0">Steps</Label>
 
                 <ListBox Grid.Row="1" x:Name="StepsView"></ListBox>
+            </Grid>
+
+            <Grid Grid.Column="1" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Label x:Name="CurrentStepLabel"></Label>
+                    <ComboBox x:Name="CurrentStepTypeComboBox" SelectionChanged="CurrentStepTypeComboBox_OnSelectionChanged"></ComboBox>
+                </StackPanel>
             </Grid>
 
         </Grid>

@@ -35,6 +35,11 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
         public List<Response> responses { get; set; }
 
         public int dialogId { get; set; }
+
+        public override string ToString()
+        {
+            return id.ToString();
+        }
     }
 
     public class Response

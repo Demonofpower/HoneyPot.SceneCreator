@@ -18,6 +18,8 @@ namespace HoneyPot.SceneCreator.GUI
             MainWindowViewModel = new MainWindowViewModel();
             InitializeComponent();
 
+            CurrentStepTypeComboBox.ItemsSource = typeof(StepType).GetEnumNames();
+            
             StepsView.ItemsSource = MainWindowViewModel.SceneWindowViewModel.Steps;
             StepsView.DisplayMemberPath = "id";
 
@@ -36,8 +38,12 @@ namespace HoneyPot.SceneCreator.GUI
             if (sender is ListBoxItem)
             {
                 ListBoxItem draggedItem = sender as ListBoxItem;
+                
+                var selectedStep = (Step)draggedItem.DataContext;
+                MainWindowViewModel.SceneWindowViewModel.SelectedStep = selectedStep;
+                CurrentStepLabel.Content = selectedStep;
 
-                MainWindowViewModel.SceneWindowViewModel.SelectedStep = (Step) draggedItem.DataContext;
+                CurrentStepTypeComboBox.SelectedItem = selectedStep.type.ToString();
 
                 DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Move);
                 draggedItem.IsSelected = true;
@@ -69,6 +75,13 @@ namespace HoneyPot.SceneCreator.GUI
                     stepsList.RemoveAt(remIdx);
                 }
             }
+        }
+
+        private void CurrentStepTypeComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            var selected = comboBox?.SelectedItem;
+            MainWindowViewModel.SceneWindowViewModel.SelectedStep.type = (StepType) Enum.Parse(typeof(StepType), (string) selected);
         }
     }
 }
