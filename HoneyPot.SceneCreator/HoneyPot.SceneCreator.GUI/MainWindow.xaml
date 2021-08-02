@@ -22,12 +22,28 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" Command="{Binding }">New</Button>
-            <Button Grid.Row="1">Load</Button>
+            <Button Grid.Row="0" Command="{Binding NewCommand}">New</Button>
+            <Button Grid.Row="1" Command="{Binding LoadCommand}">Load</Button>
         </Grid>
         <Grid DataContext="{Binding Path=SceneWindowViewModel}"
               Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Label>TEST2</Label>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0">Steps</Label>
+
+                <ListBox Grid.Row="1" x:Name="StepsView"></ListBox>
+            </Grid>
+
         </Grid>
     </Grid>
 </Window>
