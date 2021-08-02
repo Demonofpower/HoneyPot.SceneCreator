@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -54,7 +55,6 @@ namespace HoneyPot.SceneCreator.GUI
         {
             var stepsList = MainWindowViewModel.SceneWindowViewModel.Steps;
 
-
             var droppedData = e.Data.GetData(typeof(Step)) as Step;
             var target = ((ListBoxItem) (sender)).DataContext as Step;
 
@@ -74,6 +74,19 @@ namespace HoneyPot.SceneCreator.GUI
                     stepsList.Insert(targetIdx, droppedData);
                     stepsList.RemoveAt(remIdx);
                 }
+            }
+
+            var sorted = new List<Step>();
+            for (int i = 0; i < stepsList.Count; i++)
+            {
+                stepsList[i].id = i;
+                sorted.Add(stepsList[i]);
+            }
+            
+            stepsList.Clear();
+            foreach (var step in sorted)
+            {
+                stepsList.Add(step);
             }
         }
 

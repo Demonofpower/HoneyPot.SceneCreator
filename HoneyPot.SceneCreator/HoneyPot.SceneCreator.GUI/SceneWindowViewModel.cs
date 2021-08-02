@@ -18,11 +18,7 @@ namespace HoneyPot.SceneCreator.GUI
         private RelayCommand newCommand;
         private RelayCommand exportCommand;
 
-        public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>()
-        {
-            new Step() {id = 0, type = StepType.DialogLine, text = "abc"},
-            new Step() {id = 1, type = StepType.DialogLine}
-        };
+        public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
 
         public void OpenScene(Scene scene)
         {
@@ -34,20 +30,21 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void NewStep()
         {
-            Steps.Add(new Step());
+            Steps.Add(new Step() {id = Steps.Count});
         }
 
         private void Export()
         {
             var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = "scene.txt"; 
+            saveFileDialog.FileName = "scene.txt";
             saveFileDialog.DefaultExt = "txt";
             saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
 
             currScene.steps = new List<Step>(Steps);
-            
-            var json = JsonConvert.SerializeObject(currScene, Formatting.Indented, new JsonSerializerSettings() {NullValueHandling = NullValueHandling.Ignore});
-            
+
+            var json = JsonConvert.SerializeObject(currScene, Formatting.Indented,
+                new JsonSerializerSettings() {NullValueHandling = NullValueHandling.Ignore});
+
             if (saveFileDialog.ShowDialog() == true)
             {
                 File.WriteAllText(saveFileDialog.FileName, json);
@@ -64,7 +61,7 @@ namespace HoneyPot.SceneCreator.GUI
                 OnPropertyChanged();
             }
         }
-        
+
         public string Author
         {
             get => currScene?.author ?? "";
