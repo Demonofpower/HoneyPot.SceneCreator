@@ -7,9 +7,21 @@ namespace HoneyPot.SceneCreator.GUI
 {
     public class SceneWindowViewModel : BaseViewModel
     {
-        public ObservableCollection<string> Steps { get; set; } = new ObservableCollection<string>() {"a", "b", "c", "d", "e"};
-        
         private Scene currScene;
+        private Step selectedStep;
+
+        public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>() {new Step() {id = 0}, new Step() {id = 1}};
+
+        public Step SelectedStep
+        {
+            get => selectedStep;
+            set
+            {
+                if (value == selectedStep) return;
+                selectedStep = value;
+                OnPropertyChanged();
+            }
+        }
 
         public void OpenScene(Scene scene)
         {

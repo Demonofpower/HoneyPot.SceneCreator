@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using HoneyPot.SceneCreator.GUI.SceneObjects;
 
 namespace HoneyPot.SceneCreator.GUI
 {
@@ -18,12 +19,15 @@ namespace HoneyPot.SceneCreator.GUI
             InitializeComponent();
 
             StepsView.ItemsSource = MainWindowViewModel.SceneWindowViewModel.Steps;
-            
+            StepsView.DisplayMemberPath = "id";
+
             //https://stackoverflow.com/a/3352146
             Style itemContainerStyle = new Style(typeof(ListBoxItem));
             itemContainerStyle.Setters.Add(new Setter(ListBoxItem.AllowDropProperty, true));
-            itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.PreviewMouseLeftButtonDownEvent, new MouseButtonEventHandler(StepsView_OnPreviewMouseLeftButtonDown)));
-            itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.DropEvent, new DragEventHandler(StepsView_OnDrop)));
+            itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.PreviewMouseLeftButtonDownEvent,
+                new MouseButtonEventHandler(StepsView_OnPreviewMouseLeftButtonDown)));
+            itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.DropEvent,
+                new DragEventHandler(StepsView_OnDrop)));
             StepsView.ItemContainerStyle = itemContainerStyle;
         }
 
@@ -32,6 +36,9 @@ namespace HoneyPot.SceneCreator.GUI
             if (sender is ListBoxItem)
             {
                 ListBoxItem draggedItem = sender as ListBoxItem;
+
+                MainWindowViewModel.SceneWindowViewModel.SelectedStep = (Step) draggedItem.DataContext;
+
                 DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Move);
                 draggedItem.IsSelected = true;
             }
@@ -40,10 +47,10 @@ namespace HoneyPot.SceneCreator.GUI
         private void StepsView_OnDrop(object sender, DragEventArgs e)
         {
             var stepsList = MainWindowViewModel.SceneWindowViewModel.Steps;
-            
-            
-            var droppedData = e.Data.GetData(typeof(string)) as string;
-            string target = ((ListBoxItem)(sender)).DataContext as string;
+
+
+            var droppedData = e.Data.GetData(typeof(Step)) as Step;
+            var target = ((ListBoxItem) (sender)).DataContext as Step;
 
             int removedIdx = StepsView.Items.IndexOf(droppedData);
             int targetIdx = StepsView.Items.IndexOf(target);
