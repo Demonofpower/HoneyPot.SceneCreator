@@ -18,7 +18,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void New()
         {
-            onOpenScene.Invoke(new Scene());
+            onOpenScene.Invoke(new Scene() {name = "myScene", author = "myself"});
             Visible = false;
         }
         

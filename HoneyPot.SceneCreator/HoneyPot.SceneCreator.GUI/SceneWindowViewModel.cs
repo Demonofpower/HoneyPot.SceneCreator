@@ -1,7 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
+using System.Net.Mime;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace HoneyPot.SceneCreator.GUI
 {
@@ -13,14 +17,20 @@ namespace HoneyPot.SceneCreator.GUI
         private RelayCommand newCommand;
         private RelayCommand exportCommand;
 
-        public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>() {new Step() {id = 0, type = StepType.DialogLine, text = "abc"}, new Step() {id = 1, type = StepType.DialogLine}};
+        public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>()
+        {
+            new Step() {id = 0, type = StepType.DialogLine, text = "abc"},
+            new Step() {id = 1, type = StepType.DialogLine}
+        };
 
         public void OpenScene(Scene scene)
         {
             currScene = scene;
             Visible = true;
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(Author));
         }
-        
+
         private void NewStep()
         {
             Steps.Add(new Step());
@@ -28,7 +38,39 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void Export()
         {
-            MessageBox.Show("s");
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "scene.txt"; 
+            saveFileDialog.DefaultExt = "txt";
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            var json = JsonConvert.SerializeObject(currScene);
+            
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, json);
+            }
+        }
+
+        public string Name
+        {
+            get => currScene?.name ?? "";
+            set
+            {
+                if (value == currScene.name) return;
+                currScene.name = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public string Author
+        {
+            get => currScene?.author ?? "";
+            set
+            {
+                if (value == currScene.author) return;
+                currScene.author = value;
+                OnPropertyChanged();
+            }
         }
 
         public Step SelectedStep
@@ -39,7 +81,7 @@ namespace HoneyPot.SceneCreator.GUI
                 if (value == selectedStep) return;
                 selectedStep = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(Text));
+                OnPropertyChanged(nameof(MediaTypeNames.Text));
                 OnPropertyChanged(nameof(AltGirlSpeaks));
             }
         }
