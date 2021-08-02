@@ -83,6 +83,10 @@
                             <CheckBox
                                 IsChecked="{Binding AltGirlSpeaks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Alt girl</Label>
+                            <Button Command="{Binding SelectAltGirlCommand}">Select</Button>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </Grid>

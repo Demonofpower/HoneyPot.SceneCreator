@@ -8,6 +8,7 @@ using HoneyPot.SceneCreator.GUI.SceneObjects;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
+
 namespace HoneyPot.SceneCreator.GUI
 {
     public class SceneWindowViewModel : BaseViewModel
@@ -17,6 +18,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private RelayCommand newCommand;
         private RelayCommand exportCommand;
+        private RelayCommand selectAltGirlCommand;
 
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
 
@@ -49,6 +51,15 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 File.WriteAllText(saveFileDialog.FileName, json);
             }
+        }
+
+        private void SelectAltGirl()
+        {
+            var s = new Selector.Selector(new List<string>() {"a", "b", "c"});
+
+            s.ShowDialog();
+
+            MessageBox.Show(s.Selected);
         }
 
         public string Name
@@ -111,5 +122,6 @@ namespace HoneyPot.SceneCreator.GUI
 
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
         public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
+        public RelayCommand SelectAltGirlCommand => selectAltGirlCommand ?? (selectAltGirlCommand = new RelayCommand(SelectAltGirl));
     }
 }
