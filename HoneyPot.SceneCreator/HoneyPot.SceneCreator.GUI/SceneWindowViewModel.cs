@@ -56,10 +56,14 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectAltGirl()
         {
-            var s = new Selector.Selector(new List<ISelectable>()
-                {new GirlSelectable("Kyu", Directory.GetCurrentDirectory() + @"\Resources\Portraits\Kyu_Portrait.png")});
+            var s = new Selector.Selector(GirlSelectable.InitGirlSelectables());
 
             s.ShowDialog();
+
+            if (s.Selected == null)
+            {
+                return;
+            }
 
             MessageBox.Show(s.Selected.Name);
         }

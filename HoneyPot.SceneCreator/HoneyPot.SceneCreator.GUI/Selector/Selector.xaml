@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HoneyPot.SceneCreator.GUI.Selector"
         mc:Ignorable="d"
-        Title="Selector" Height="450" Width="800" x:Name="Window">
-    <Grid>
-        <ListBox x:Name="ListBox" SelectedItem="{Binding ElementName=Window, Path=Selected}">
+        Title="Selector" Height="450" Width="580" x:Name="Window">
+    <Grid ScrollViewer.CanContentScroll="False">
+        <ListBox x:Name="ListBox" SelectedItem="{Binding ElementName=Window, Path=Selected}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type local:ISelectable}">
-                    <StackPanel>
-                        <Image Source="{Binding ResourcePath}"></Image>
-                        <TextBlock Text="{Binding Name}"/>
-                    </StackPanel>
+                    <Image Source="{Binding ResourcePath}" Height="130" Width="130"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
