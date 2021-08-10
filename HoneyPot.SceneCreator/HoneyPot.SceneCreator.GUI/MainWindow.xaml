@@ -88,6 +88,11 @@
                             <Label Content="{Binding AltGirl}"></Label>
                             <Button Command="{Binding SelectAltGirlCommand}">Select</Button>
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Alt girl hair</Label>
+                            <Label Content="{Binding AltGirlHairId}"></Label>
+                            <Button Command="{Binding SelectAltGirlHairCommand}">Select</Button>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </Grid>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Mime;
@@ -20,6 +21,7 @@ namespace HoneyPot.SceneCreator.GUI
         private RelayCommand newCommand;
         private RelayCommand exportCommand;
         private RelayCommand selectAltGirlCommand;
+        private RelayCommand selectAltGirlHairCommand;
 
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
 
@@ -66,6 +68,20 @@ namespace HoneyPot.SceneCreator.GUI
             }
 
             AltGirl = s.Selected.Name;
+        }
+
+        private void SelectAltGirlHair()
+        {
+            var s = new Selector.Selector(GirlSelectable.InitGirlSelectables());
+
+            s.ShowDialog();
+
+            if (s.Selected == null)
+            {
+                return;
+            }
+
+            AltGirlHairId = Convert.ToInt32(s.Selected.Name);
         }
 
         public string Name
@@ -136,11 +152,24 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public int AltGirlHairId
+        {
+            get => selectedStep?.altGirlHairId ?? 0;
+            set
+            {
+                if (Equals(value, selectedStep.altGirlHairId)) return;
+                selectedStep.altGirlHairId = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
         public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
 
         public RelayCommand SelectAltGirlCommand =>
             selectAltGirlCommand ?? (selectAltGirlCommand = new RelayCommand(SelectAltGirl));
+        public RelayCommand SelectAltGirlHairCommand =>
+            selectAltGirlHairCommand ?? (selectAltGirlHairCommand = new RelayCommand(SelectAltGirlHair));
     }
 }
