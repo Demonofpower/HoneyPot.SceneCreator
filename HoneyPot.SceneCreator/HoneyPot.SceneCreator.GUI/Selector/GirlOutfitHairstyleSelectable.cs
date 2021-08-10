@@ -32,17 +32,17 @@ namespace HoneyPot.SceneCreator.GUI.Selector
             }
         }
 
-        public static List<GirlOutfitHairstyleSelectable> InitGirlOutfitHairstyleSelectables(string girlName)
+        public static List<GirlOutfitHairstyleSelectable> InitGirlOutfitHairstyleSelectables(string girlName, string[] artIds)
         {
             var hairs = new List<GirlOutfitHairstyleSelectable>();
 
             var currDir = Directory.GetCurrentDirectory() + @"\Resources\HairstylesOutfits\" + girlName + ".jpg";
 
-            hairs.Add(new GirlOutfitHairstyleSelectable("1", currDir, 1));
-            hairs.Add(new GirlOutfitHairstyleSelectable("2", currDir, 2));
-            hairs.Add(new GirlOutfitHairstyleSelectable("3", currDir, 3));
-            hairs.Add(new GirlOutfitHairstyleSelectable("4", currDir, 4));
-            hairs.Add(new GirlOutfitHairstyleSelectable("5", currDir, 5));
+            hairs.Add(new GirlOutfitHairstyleSelectable(artIds[0], currDir, 1));
+            hairs.Add(new GirlOutfitHairstyleSelectable(artIds[1], currDir, 2));
+            hairs.Add(new GirlOutfitHairstyleSelectable(artIds[2], currDir, 3));
+            hairs.Add(new GirlOutfitHairstyleSelectable(artIds[3], currDir, 4));
+            hairs.Add(new GirlOutfitHairstyleSelectable(artIds[4], currDir, 5));
 
             return hairs;
         }
