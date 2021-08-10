@@ -85,6 +85,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Label>Alt girl</Label>
+                            <Label Content="{Binding AltGirl}"></Label>
                             <Button Command="{Binding SelectAltGirlCommand}">Select</Button>
                         </StackPanel>
                     </StackPanel>

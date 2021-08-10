@@ -65,7 +65,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            MessageBox.Show(s.Selected.Name);
+            AltGirl = s.Selected.Name;
         }
 
         public string Name
@@ -121,6 +121,17 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 if (value == selectedStep.altGirlSpeaks) return;
                 selectedStep.altGirlSpeaks = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string AltGirl
+        {
+            get => selectedStep?.altGirl ?? "";
+            set
+            {
+                if (Equals(value, selectedStep.altGirl)) return;
+                selectedStep.altGirl = value;
                 OnPropertyChanged();
             }
         }

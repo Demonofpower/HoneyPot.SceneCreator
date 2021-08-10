@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace HoneyPot.SceneCreator.GUI.Selector
 {
-    class GirlSelectable : ISelectable
+    public class GirlSelectable : ISelectable
     {
         public GirlSelectable(string name, string resourcePath)
         {
