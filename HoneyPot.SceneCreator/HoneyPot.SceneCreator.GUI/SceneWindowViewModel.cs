@@ -5,6 +5,7 @@ using System.Net.Mime;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
+using HoneyPot.SceneCreator.GUI.Selector;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
@@ -55,11 +56,12 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectAltGirl()
         {
-            var s = new Selector.Selector(new List<string>() {"a", "b", "c"});
+            var s = new Selector.Selector(new List<ISelectable>()
+                {new GirlSelectable("Kyu", Directory.GetCurrentDirectory() + @"\Resources\Portraits\Kyu_Portrait.png")});
 
             s.ShowDialog();
 
-            MessageBox.Show(s.Selected);
+            MessageBox.Show(s.Selected.Name);
         }
 
         public string Name
@@ -122,6 +124,8 @@ namespace HoneyPot.SceneCreator.GUI
 
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
         public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
-        public RelayCommand SelectAltGirlCommand => selectAltGirlCommand ?? (selectAltGirlCommand = new RelayCommand(SelectAltGirl));
+
+        public RelayCommand SelectAltGirlCommand =>
+            selectAltGirlCommand ?? (selectAltGirlCommand = new RelayCommand(SelectAltGirl));
     }
 }

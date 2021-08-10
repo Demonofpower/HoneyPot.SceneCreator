@@ -64,6 +64,8 @@
     <Compile Include="ManageWindowViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SceneWindowViewModel.cs" />
+    <Compile Include="Selector\GirlSelectable.cs" />
+    <Compile Include="Selector\ISelectable.cs" />
     <Compile Include="Selector\Selector.xaml.cs">
       <DependentUpon>Selector.xaml</DependentUpon>
     </Compile>
@@ -114,42 +116,42 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\Portraits\Aiko_Portrait.png">
+    <AdditionalFiles Include="Resources\Portraits\Aiko_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Audrey_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Audrey_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Beli_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Beli_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Celeste_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Celeste_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Jessie_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Jessie_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Kyanna_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Kyanna_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Kyu_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Kyu_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Lola_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Lola_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Momo_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Momo_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Nikki_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Nikki_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Tiffany_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Tiffany_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\Portraits\Venus_Portrait.png">
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\Portraits\Venus_Portrait.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </AdditionalFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

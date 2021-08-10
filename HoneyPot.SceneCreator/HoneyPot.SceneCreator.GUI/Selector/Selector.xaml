@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="Selector" Height="450" Width="800" x:Name="Window">
     <Grid>
-        <ListBox x:Name="ListBox" SelectedItem="{Binding ElementName=Window, Path=Selected}"></ListBox>
+        <ListBox x:Name="ListBox" SelectedItem="{Binding ElementName=Window, Path=Selected}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:ISelectable}">
+                    <StackPanel>
+                        <Image Source="{Binding ResourcePath}"></Image>
+                        <TextBlock Text="{Binding Name}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

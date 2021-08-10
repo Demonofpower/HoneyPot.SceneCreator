@@ -8,9 +8,9 @@ namespace HoneyPot.SceneCreator.GUI.Selector
     /// </summary>
     public partial class Selector : Window
     {
-        private string selected;
+        private ISelectable selected;
         
-        public string Selected
+        public ISelectable Selected
         {
             get => selected;
             set
@@ -20,7 +20,7 @@ namespace HoneyPot.SceneCreator.GUI.Selector
             }
         }
 
-        public Selector(IEnumerable<string> values)
+        public Selector(IEnumerable<ISelectable> values)
         {
             InitializeComponent();
             ListBox.ItemsSource = values;
