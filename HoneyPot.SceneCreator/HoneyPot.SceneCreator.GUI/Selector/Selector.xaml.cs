@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace HoneyPot.SceneCreator.GUI.Selector
@@ -22,6 +23,11 @@ namespace HoneyPot.SceneCreator.GUI.Selector
 
         public Selector(IEnumerable<ISelectable> values)
         {
+            if (values.FirstOrDefault(x => true).GetType() == typeof(GirlOutfitHairstyleSelectable))
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            
             InitializeComponent();
             ListBox.ItemsSource = values;
         }

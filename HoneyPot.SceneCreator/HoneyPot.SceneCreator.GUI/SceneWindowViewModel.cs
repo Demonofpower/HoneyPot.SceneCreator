@@ -22,6 +22,7 @@ namespace HoneyPot.SceneCreator.GUI
         private RelayCommand exportCommand;
         private RelayCommand selectAltGirlCommand;
         private RelayCommand selectAltGirlHairCommand;
+        private RelayCommand selectAltGirlOutfitCommand;
 
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
 
@@ -72,7 +73,12 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectAltGirlHair()
         {
-            var s = new Selector.Selector(GirlSelectable.InitGirlSelectables());
+            if (string.IsNullOrWhiteSpace(AltGirl))
+            {
+                return;
+            }
+            
+            var s = new Selector.Selector(GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl));
 
             s.ShowDialog();
 
@@ -82,6 +88,25 @@ namespace HoneyPot.SceneCreator.GUI
             }
 
             AltGirlHairId = Convert.ToInt32(s.Selected.Name);
+        }
+
+        private void SelectAltGirlOutfit()
+        {
+            if (string.IsNullOrWhiteSpace(AltGirl))
+            {
+                return;
+            }
+            
+            var s = new Selector.Selector(GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl));
+
+            s.ShowDialog();
+
+            if (s.Selected == null)
+            {
+                return;
+            }
+
+            AltGirlOutfitId = Convert.ToInt32(s.Selected.Name);
         }
 
         public string Name
@@ -163,13 +188,28 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public int AltGirlOutfitId
+        {
+            get => selectedStep?.altGirlOutfitId ?? 0;
+            set
+            {
+                if (Equals(value, selectedStep.altGirlOutfitId)) return;
+                selectedStep.altGirlOutfitId = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
         public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
 
         public RelayCommand SelectAltGirlCommand =>
             selectAltGirlCommand ?? (selectAltGirlCommand = new RelayCommand(SelectAltGirl));
+
         public RelayCommand SelectAltGirlHairCommand =>
             selectAltGirlHairCommand ?? (selectAltGirlHairCommand = new RelayCommand(SelectAltGirlHair));
+
+        public RelayCommand SelectAltGirlOutfitCommand =>
+            selectAltGirlOutfitCommand ?? (selectAltGirlOutfitCommand = new RelayCommand(SelectAltGirlOutfit));
     }
 }

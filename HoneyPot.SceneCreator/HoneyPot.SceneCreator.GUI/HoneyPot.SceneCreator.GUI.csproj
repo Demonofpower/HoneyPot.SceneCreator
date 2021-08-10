@@ -64,7 +64,7 @@
     <Compile Include="ManageWindowViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="SceneWindowViewModel.cs" />
-    <Compile Include="Selector\GirlHairSelectable.cs" />
+    <Compile Include="Selector\GirlOutfitHairstyleSelectable.cs" />
     <Compile Include="Selector\GirlSelectable.cs" />
     <Compile Include="Selector\ISelectable.cs" />
     <Compile Include="Selector\Selector.xaml.cs">
@@ -155,18 +155,42 @@
     </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\HairstylesOutfits\Aiko.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Audrey.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Beli.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Celeste.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Jessie.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Kyanna.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Kyu.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Lola.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Momo.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Nikki.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Tiffany.jpg" />
-    <Resource Include="Resources\HairstylesOutfits\Venus.jpg" />
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Aiko.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Audrey.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Beli.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Celeste.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Jessie.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Kyanna.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Kyu.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Lola.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Momo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Nikki.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Tiffany.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
+    <AdditionalFiles Include="Resources\HairstylesOutfits\Venus.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

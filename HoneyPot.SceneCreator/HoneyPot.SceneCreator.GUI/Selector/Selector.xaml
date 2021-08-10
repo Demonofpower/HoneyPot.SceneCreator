@@ -6,6 +6,14 @@
         xmlns:local="clr-namespace:HoneyPot.SceneCreator.GUI.Selector"
         mc:Ignorable="d"
         Title="Selector" Height="450" Width="580" x:Name="Window">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:GirlSelectable}">
+            <Image Source="{Binding ResourcePath}" Height="130" Width="130"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:GirlOutfitHairstyleSelectable}">
+            <Image Source="{Binding Image}" Height="1000" Width="350"/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid ScrollViewer.CanContentScroll="False">
         <ListBox x:Name="ListBox" SelectedItem="{Binding ElementName=Window, Path=Selected}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemsPanel>
@@ -13,11 +21,6 @@
                     <WrapPanel />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type local:ISelectable}">
-                    <Image Source="{Binding ResourcePath}" Height="130" Width="130"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </Window>
