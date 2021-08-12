@@ -23,7 +23,7 @@ namespace HoneyPot.SceneCreator.GUI.Selector
 
         public Selector(IEnumerable<ISelectable> values)
         {
-            if (values.FirstOrDefault(x => true).GetType() == typeof(GirlOutfitHairstyleSelectable))
+            if (values.FirstOrDefault(x => true)?.GetType() == typeof(GirlOutfitHairstyleSelectable))
             {
                 this.WindowState = WindowState.Maximized;
             }

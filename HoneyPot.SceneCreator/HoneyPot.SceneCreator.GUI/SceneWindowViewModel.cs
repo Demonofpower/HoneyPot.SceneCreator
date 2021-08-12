@@ -23,6 +23,7 @@ namespace HoneyPot.SceneCreator.GUI
         private RelayCommand selectAltGirlCommand;
         private RelayCommand selectAltGirlHairCommand;
         private RelayCommand selectAltGirlOutfitCommand;
+        private RelayCommand selectNewLocCommand;
 
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
 
@@ -107,6 +108,20 @@ namespace HoneyPot.SceneCreator.GUI
             }
 
             AltGirlOutfitId = Convert.ToInt32(s.Selected.Name);
+        }
+
+        private void SelectNewLoc()
+        {
+            var s = new Selector.Selector(LocationSelectable.InitLocationSelectables());
+
+            s.ShowDialog();
+
+            if (s.Selected == null)
+            {
+                return;
+            }
+
+            NewLoc = s.Selected.Name;
         }
 
         public string Name
@@ -199,6 +214,16 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public string NewLoc
+        {
+            get => selectedStep?.newLoc ?? "";
+            set
+            {
+                if (Equals(value, selectedStep.newLoc)) return;
+                selectedStep.newLoc = value;
+                OnPropertyChanged();
+            }
+        }
 
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
         public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
@@ -211,5 +236,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         public RelayCommand SelectAltGirlOutfitCommand =>
             selectAltGirlOutfitCommand ?? (selectAltGirlOutfitCommand = new RelayCommand(SelectAltGirlOutfit));
+        public RelayCommand SelectNewLocCommand =>
+            selectNewLocCommand ?? (selectNewLocCommand = new RelayCommand(SelectNewLoc));
     }
 }
