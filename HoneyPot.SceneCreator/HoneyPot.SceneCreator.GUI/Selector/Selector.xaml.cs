@@ -27,7 +27,11 @@ namespace HoneyPot.SceneCreator.GUI.Selector
             {
                 this.WindowState = WindowState.Maximized;
             }
-            
+            if (values.FirstOrDefault(x => true)?.GetType() == typeof(LocationSelectable))
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+
             InitializeComponent();
             ListBox.ItemsSource = values;
         }

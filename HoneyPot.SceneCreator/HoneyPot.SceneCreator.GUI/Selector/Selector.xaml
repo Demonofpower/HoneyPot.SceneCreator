@@ -13,6 +13,9 @@
         <DataTemplate DataType="{x:Type local:GirlOutfitHairstyleSelectable}">
             <Image Source="{Binding Image}" Height="1000" Width="350"/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type local:LocationSelectable}">
+            <Image Source="{Binding ResourcePath}" Height="465" Width="610" Stretch="Fill"/>
+        </DataTemplate>
     </Window.Resources>
     <Grid ScrollViewer.CanContentScroll="False">
         <ListBox x:Name="ListBox" SelectedItem="{Binding ElementName=Window, Path=Selected}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
