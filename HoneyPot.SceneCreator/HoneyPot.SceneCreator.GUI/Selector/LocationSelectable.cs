@@ -22,7 +22,7 @@ namespace HoneyPot.SceneCreator.GUI.Selector
 
             foreach (var file in Directory.GetFiles(currDir))
             {
-                locations.Add(new LocationSelectable(Path.GetFileName(file),  file));
+                locations.Add(new LocationSelectable(Path.GetFileNameWithoutExtension(file),  file));
             }
 
             return locations;

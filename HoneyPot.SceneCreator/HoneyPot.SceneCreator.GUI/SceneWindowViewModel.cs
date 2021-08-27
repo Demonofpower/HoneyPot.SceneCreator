@@ -121,6 +121,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
+            MessageBox.Show(s.Selected.Name);
             NewLoc = s.Selected.Name;
         }
 
