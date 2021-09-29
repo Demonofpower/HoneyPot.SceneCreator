@@ -74,31 +74,31 @@
                         <Label x:Name="CurrentStepLabel" />
                         <ComboBox x:Name="CurrentStepTypeComboBox"
                                   SelectionChanged="CurrentStepTypeComboBox_OnSelectionChanged" />
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.TextVisibility}">
                             <Label>Text</Label>
                             <TextBox Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlSpeaksVisibility}">
                             <Label>Alt girl speaks</Label>
                             <CheckBox
                                 IsChecked="{Binding AltGirlSpeaks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlVisibility}">
                             <Label>Alt girl</Label>
                             <Label Content="{Binding AltGirl}"></Label>
                             <Button Command="{Binding SelectAltGirlCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlHairVisibility}">
                             <Label>Alt girl hair</Label>
                             <Label Content="{Binding AltGirlHairId}"></Label>
                             <Button Command="{Binding SelectAltGirlHairCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlOutfitVisibility}">
                             <Label>Alt girl outfit</Label>
                             <Label Content="{Binding AltGirlOutfitId}"></Label>
                             <Button Command="{Binding SelectAltGirlOutfitCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.NewLocationVisibility}">
                             <Label>New Location</Label>
                             <Label Content="{Binding NewLoc}"></Label>
                             <Button Command="{Binding SelectNewLocCommand}">Select</Button>

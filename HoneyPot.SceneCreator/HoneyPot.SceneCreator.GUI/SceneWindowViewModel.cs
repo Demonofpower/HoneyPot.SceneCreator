@@ -26,6 +26,11 @@ namespace HoneyPot.SceneCreator.GUI
         private RelayCommand selectNewLocCommand;
 
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
+        
+        public SceneWindowViewModel()
+        {
+            VisibilityManager = new PropertyVisibilityManager(StepType.DialogLine);
+        }
 
         public void OpenScene(Scene scene)
         {
@@ -78,8 +83,10 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 return;
             }
-            
-            var s = new Selector.Selector(GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl, new []{"8", "9", "10", "11", "12"}));
+
+            var s = new Selector.Selector(
+                GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl,
+                    new[] {"8", "9", "10", "11", "12"}));
 
             s.ShowDialog();
 
@@ -97,8 +104,10 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 return;
             }
-            
-            var s = new Selector.Selector(GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl, new []{"13", "14", "15", "16", "17"}));
+
+            var s = new Selector.Selector(
+                GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl,
+                    new[] {"13", "14", "15", "16", "17"}));
 
             s.ShowDialog();
 
@@ -226,6 +235,8 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public PropertyVisibilityManager VisibilityManager { get; }
+
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
         public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
 
@@ -237,6 +248,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         public RelayCommand SelectAltGirlOutfitCommand =>
             selectAltGirlOutfitCommand ?? (selectAltGirlOutfitCommand = new RelayCommand(SelectAltGirlOutfit));
+
         public RelayCommand SelectNewLocCommand =>
             selectNewLocCommand ?? (selectNewLocCommand = new RelayCommand(SelectNewLoc));
     }
