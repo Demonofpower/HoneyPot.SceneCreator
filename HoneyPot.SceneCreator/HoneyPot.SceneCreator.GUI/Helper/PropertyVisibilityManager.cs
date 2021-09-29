@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
 
 namespace HoneyPot.SceneCreator.GUI.Helper
@@ -17,18 +18,34 @@ namespace HoneyPot.SceneCreator.GUI.Helper
             stepType = newStepType;
         }
 
-        private Visibility GetVisibility()
+        private Visibility GetVisibility(string property)
         {
-
+            switch (property)
+            {
+                case nameof(TextVisibility):
+                    break;
+                case nameof(AltGirlSpeaksVisibility):
+                    break;
+                case nameof(AltGirlVisibility):
+                    break;
+                case nameof(AltGirlHairVisibility):
+                    break;
+                case nameof(AltGirlOutfitVisibility):
+                    break;
+                case nameof(NewLocationVisibility):
+                    break;
+                default:
+                    throw new InvalidOperationException("Unknown property");
+            }
 
             return Visibility.Collapsed;
         }
 
-        public Visibility TextVisibility => GetVisibility();
-        public Visibility AltGirlSpeaksVisibility => GetVisibility();
-        public Visibility AltGirlVisibility => GetVisibility();
-        public Visibility AltGirlHairVisibility => GetVisibility();
-        public Visibility AltGirlOutfitVisibility => GetVisibility();
-        public Visibility NewLocationVisibility => GetVisibility();
+        public Visibility TextVisibility => GetVisibility(nameof(TextVisibility));
+        public Visibility AltGirlSpeaksVisibility => GetVisibility(nameof(AltGirlSpeaksVisibility));
+        public Visibility AltGirlVisibility => GetVisibility(nameof(AltGirlVisibility));
+        public Visibility AltGirlHairVisibility => GetVisibility(nameof(AltGirlHairVisibility));
+        public Visibility AltGirlOutfitVisibility => GetVisibility(nameof(AltGirlOutfitVisibility));
+        public Visibility NewLocationVisibility => GetVisibility(nameof(NewLocationVisibility));
     }
 }
