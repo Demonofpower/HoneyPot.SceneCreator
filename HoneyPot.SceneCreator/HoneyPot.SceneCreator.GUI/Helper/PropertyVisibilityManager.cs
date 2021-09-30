@@ -23,17 +23,17 @@ namespace HoneyPot.SceneCreator.GUI.Helper
             switch (property)
             {
                 case nameof(TextVisibility):
-                    break;
+                    return stepType == StepType.DialogLine ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(AltGirlSpeaksVisibility):
-                    break;
+                    return stepType == StepType.DialogLine ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(AltGirlVisibility):
-                    break;
+                    return stepType == StepType.ShowAltGirl ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(AltGirlHairVisibility):
-                    break;
+                    return stepType == StepType.ShowAltGirl ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(AltGirlOutfitVisibility):
-                    break;
+                    return stepType == StepType.ShowAltGirl ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(NewLocationVisibility):
-                    break;
+                    return stepType == StepType.Travel ? Visibility.Visible : Visibility.Collapsed;
                 default:
                     throw new InvalidOperationException("Unknown property");
             }
