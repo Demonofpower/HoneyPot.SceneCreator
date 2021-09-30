@@ -4,7 +4,7 @@ using HoneyPot.SceneCreator.GUI.SceneObjects;
 
 namespace HoneyPot.SceneCreator.GUI.Helper
 {
-    public class PropertyVisibilityManager
+    public class PropertyVisibilityManager : BaseViewModel
     {
         private StepType stepType;
 
@@ -16,6 +16,13 @@ namespace HoneyPot.SceneCreator.GUI.Helper
         public void SetStepType(StepType newStepType)
         {
             stepType = newStepType;
+
+            OnPropertyChanged(nameof(TextVisibility));
+            OnPropertyChanged(nameof(AltGirlSpeaksVisibility));
+            OnPropertyChanged(nameof(AltGirlVisibility));
+            OnPropertyChanged(nameof(AltGirlHairVisibility));
+            OnPropertyChanged(nameof(AltGirlOutfitVisibility));
+            OnPropertyChanged(nameof(NewLocationVisibility));
         }
 
         private Visibility GetVisibility(string property)
@@ -37,10 +44,8 @@ namespace HoneyPot.SceneCreator.GUI.Helper
                 default:
                     throw new InvalidOperationException("Unknown property");
             }
-
-            return Visibility.Collapsed;
         }
-
+        
         public Visibility TextVisibility => GetVisibility(nameof(TextVisibility));
         public Visibility AltGirlSpeaksVisibility => GetVisibility(nameof(AltGirlSpeaksVisibility));
         public Visibility AltGirlVisibility => GetVisibility(nameof(AltGirlVisibility));
