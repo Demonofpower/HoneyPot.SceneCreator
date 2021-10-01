@@ -74,12 +74,12 @@
                                   SelectionChanged="CurrentStepTypeComboBox_OnSelectionChanged" />
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.TextVisibility}">
                             <Label>Text</Label>
-                            <TextBox Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlSpeaksVisibility}">
                             <Label>Alt girl speaks</Label>
                             <CheckBox
-                                IsChecked="{Binding AltGirlSpeaks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                IsChecked="{Binding AltGirlSpeaks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.GirlVisibility}">
                             <Label>Girl</Label>
