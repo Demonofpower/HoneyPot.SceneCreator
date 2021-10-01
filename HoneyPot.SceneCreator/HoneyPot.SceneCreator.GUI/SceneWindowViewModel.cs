@@ -173,7 +173,7 @@ namespace HoneyPot.SceneCreator.GUI
 
             s.ShowDialog();
 
-            if (s.Selected == null)a
+            if (s.Selected == null)
             {
                 return;
             }
