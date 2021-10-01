@@ -19,6 +19,9 @@ namespace HoneyPot.SceneCreator.GUI.Helper
 
             OnPropertyChanged(nameof(TextVisibility));
             OnPropertyChanged(nameof(AltGirlSpeaksVisibility));
+            OnPropertyChanged(nameof(GirlVisibility));
+            OnPropertyChanged(nameof(GirlHairVisibility));
+            OnPropertyChanged(nameof(GirlOutfitVisibility)); 
             OnPropertyChanged(nameof(AltGirlVisibility));
             OnPropertyChanged(nameof(AltGirlHairVisibility));
             OnPropertyChanged(nameof(AltGirlOutfitVisibility));
@@ -33,6 +36,12 @@ namespace HoneyPot.SceneCreator.GUI.Helper
                     return stepType == StepType.DialogLine ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(AltGirlSpeaksVisibility):
                     return stepType == StepType.DialogLine ? Visibility.Visible : Visibility.Collapsed;
+                case nameof(GirlVisibility):
+                    return stepType == StepType.ShowGirl ? Visibility.Visible : Visibility.Collapsed;
+                case nameof(GirlHairVisibility):
+                    return stepType == StepType.ShowGirl ? Visibility.Visible : Visibility.Collapsed;
+                case nameof(GirlOutfitVisibility):
+                    return stepType == StepType.ShowGirl ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(AltGirlVisibility):
                     return stepType == StepType.ShowAltGirl ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(AltGirlHairVisibility):
@@ -48,6 +57,9 @@ namespace HoneyPot.SceneCreator.GUI.Helper
         
         public Visibility TextVisibility => GetVisibility(nameof(TextVisibility));
         public Visibility AltGirlSpeaksVisibility => GetVisibility(nameof(AltGirlSpeaksVisibility));
+        public Visibility GirlVisibility => GetVisibility(nameof(GirlVisibility));
+        public Visibility GirlHairVisibility => GetVisibility(nameof(GirlHairVisibility));
+        public Visibility GirlOutfitVisibility => GetVisibility(nameof(GirlOutfitVisibility));
         public Visibility AltGirlVisibility => GetVisibility(nameof(AltGirlVisibility));
         public Visibility AltGirlHairVisibility => GetVisibility(nameof(AltGirlHairVisibility));
         public Visibility AltGirlOutfitVisibility => GetVisibility(nameof(AltGirlOutfitVisibility));

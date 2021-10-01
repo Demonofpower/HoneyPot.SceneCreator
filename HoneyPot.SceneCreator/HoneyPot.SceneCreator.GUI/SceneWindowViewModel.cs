@@ -20,6 +20,9 @@ namespace HoneyPot.SceneCreator.GUI
 
         private RelayCommand newCommand;
         private RelayCommand exportCommand;
+        private RelayCommand selectGirlCommand;
+        private RelayCommand selectGirlHairCommand;
+        private RelayCommand selectGirlOutfitCommand;
         private RelayCommand selectAltGirlCommand;
         private RelayCommand selectAltGirlHairCommand;
         private RelayCommand selectAltGirlOutfitCommand;
@@ -61,6 +64,62 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 File.WriteAllText(saveFileDialog.FileName, json);
             }
+        }
+
+        private void SelectGirl()
+        {
+            var s = new Selector.Selector(GirlSelectable.InitGirlSelectables());
+
+            s.ShowDialog();
+
+            if (s.Selected == null)
+            {
+                return;
+            }
+
+            Girl = s.Selected.Name;
+        }
+
+        private void SelectGirlHair()
+        {
+            if (string.IsNullOrWhiteSpace(Girl))
+            {
+                return;
+            }
+
+            var s = new Selector.Selector(
+                GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(Girl,
+                    new[] { "8", "9", "10", "11", "12" }));
+
+            s.ShowDialog();
+
+            if (s.Selected == null)
+            {
+                return;
+            }
+
+            GirlHairId = Convert.ToInt32(s.Selected.Name);
+        }
+
+        private void SelectGirlOutfit()
+        {
+            if (string.IsNullOrWhiteSpace(Girl))
+            {
+                return;
+            }
+
+            var s = new Selector.Selector(
+                GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(Girl,
+                    new[] { "13", "14", "15", "16", "17" }));
+
+            s.ShowDialog();
+
+            if (s.Selected == null)
+            {
+                return;
+            }
+
+            GirlOutfitId = Convert.ToInt32(s.Selected.Name);
         }
 
         private void SelectAltGirl()
@@ -129,8 +188,7 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 return;
             }
-
-            MessageBox.Show(s.Selected.Name);
+            
             NewLoc = s.Selected.Name;
         }
 
@@ -191,6 +249,39 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public string Girl
+        {
+            get => selectedStep?.girl ?? "";
+            set
+            {
+                if (Equals(value, selectedStep.girl)) return;
+                selectedStep.girl = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int GirlHairId
+        {
+            get => selectedStep?.girlHairId ?? 0;
+            set
+            {
+                if (Equals(value, selectedStep.girlHairId)) return;
+                selectedStep.girlHairId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int GirlOutfitId
+        {
+            get => selectedStep?.girlOutfitId ?? 0;
+            set
+            {
+                if (Equals(value, selectedStep.girlOutfitId)) return;
+                selectedStep.girlOutfitId = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string AltGirl
         {
             get => selectedStep?.altGirl ?? "";
@@ -239,7 +330,14 @@ namespace HoneyPot.SceneCreator.GUI
 
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
         public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
+        public RelayCommand SelectGirlCommand =>
+            selectGirlCommand ?? (selectGirlCommand = new RelayCommand(SelectGirl));
 
+        public RelayCommand SelectGirlHairCommand =>
+            selectGirlHairCommand ?? (selectGirlHairCommand = new RelayCommand(SelectGirlHair));
+
+        public RelayCommand SelectGirlOutfitCommand =>
+            selectGirlOutfitCommand ?? (selectGirlOutfitCommand = new RelayCommand(SelectGirlOutfit));
         public RelayCommand SelectAltGirlCommand =>
             selectAltGirlCommand ?? (selectAltGirlCommand = new RelayCommand(SelectAltGirl));
 

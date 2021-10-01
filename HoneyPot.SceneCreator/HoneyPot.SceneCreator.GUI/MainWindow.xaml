@@ -83,6 +83,21 @@
                             <CheckBox
                                 IsChecked="{Binding AltGirlSpeaks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.GirlVisibility}">
+                            <Label>Girl</Label>
+                            <Label Content="{Binding Girl}"></Label>
+                            <Button Command="{Binding SelectGirlCommand}">Select</Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.GirlHairVisibility}">
+                            <Label>Girl hair</Label>
+                            <Label Content="{Binding GirlHairId}"></Label>
+                            <Button Command="{Binding SelectGirlHairCommand}">Select</Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.GirlOutfitVisibility}">
+                            <Label>Girl outfit</Label>
+                            <Label Content="{Binding GirlOutfitId}"></Label>
+                            <Button Command="{Binding SelectGirlOutfitCommand}">Select</Button>
+                        </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlVisibility}">
                             <Label>Alt girl</Label>
                             <Label Content="{Binding AltGirl}"></Label>
