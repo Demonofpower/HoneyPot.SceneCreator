@@ -98,5 +98,10 @@ namespace HoneyPot.SceneCreator.GUI
             MainWindowViewModel.SceneWindowViewModel.SelectedStep.type = newStepType;
             MainWindowViewModel.SceneWindowViewModel.VisibilityManager.SetStepType(newStepType);
         }
+
+        private void StepsView_OnSelected(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

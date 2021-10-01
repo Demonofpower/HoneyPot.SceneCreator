@@ -45,7 +45,9 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void NewStep()
         {
-            Steps.Add(new Step() {id = Steps.Count});
+            var newStep = new Step() {id = Steps.Count};
+            Steps.Add(newStep);
+            SelectedStep = newStep;
         }
 
         private void Export()
@@ -214,115 +216,122 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
-        public Step SelectedStep
-        {
-            get => selectedStep;
-            set
-            {
-                if (value == selectedStep) return;
-                selectedStep = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(MediaTypeNames.Text));
-                OnPropertyChanged(nameof(AltGirlSpeaks));
-            }
-        }
-
         public string Text
         {
-            get => selectedStep?.text ?? "";
+            get => SelectedStep?.text ?? "";
             set
             {
-                if (value == selectedStep.text) return;
-                selectedStep.text = value;
+                if (value == SelectedStep.text) return;
+                SelectedStep.text = value;
                 OnPropertyChanged();
             }
         }
 
         public bool AltGirlSpeaks
         {
-            get => selectedStep?.altGirlSpeaks ?? false;
+            get => SelectedStep?.altGirlSpeaks ?? false;
             set
             {
-                if (value == selectedStep.altGirlSpeaks) return;
-                selectedStep.altGirlSpeaks = value;
+                if (value == SelectedStep.altGirlSpeaks) return;
+                SelectedStep.altGirlSpeaks = value;
                 OnPropertyChanged();
             }
         }
 
         public string Girl
         {
-            get => selectedStep?.girl ?? "";
+            get => SelectedStep?.girl ?? "";
             set
             {
-                if (Equals(value, selectedStep.girl)) return;
-                selectedStep.girl = value;
+                if (Equals(value, SelectedStep.girl)) return;
+                SelectedStep.girl = value;
                 OnPropertyChanged();
             }
         }
 
         public int GirlHairId
         {
-            get => selectedStep?.girlHairId ?? 0;
+            get => SelectedStep?.girlHairId ?? 0;
             set
             {
-                if (Equals(value, selectedStep.girlHairId)) return;
-                selectedStep.girlHairId = value;
+                if (Equals(value, SelectedStep.girlHairId)) return;
+                SelectedStep.girlHairId = value;
                 OnPropertyChanged();
             }
         }
 
         public int GirlOutfitId
         {
-            get => selectedStep?.girlOutfitId ?? 0;
+            get => SelectedStep?.girlOutfitId ?? 0;
             set
             {
-                if (Equals(value, selectedStep.girlOutfitId)) return;
-                selectedStep.girlOutfitId = value;
+                if (Equals(value, SelectedStep.girlOutfitId)) return;
+                SelectedStep.girlOutfitId = value;
                 OnPropertyChanged();
             }
         }
 
         public string AltGirl
         {
-            get => selectedStep?.altGirl ?? "";
+            get => SelectedStep?.altGirl ?? "";
             set
             {
-                if (Equals(value, selectedStep.altGirl)) return;
-                selectedStep.altGirl = value;
+                if (Equals(value, SelectedStep.altGirl)) return;
+                SelectedStep.altGirl = value;
                 OnPropertyChanged();
             }
         }
 
         public int AltGirlHairId
         {
-            get => selectedStep?.altGirlHairId ?? 0;
+            get => SelectedStep?.altGirlHairId ?? 0;
             set
             {
-                if (Equals(value, selectedStep.altGirlHairId)) return;
-                selectedStep.altGirlHairId = value;
+                if (Equals(value, SelectedStep.altGirlHairId)) return;
+                SelectedStep.altGirlHairId = value;
                 OnPropertyChanged();
             }
         }
 
         public int AltGirlOutfitId
         {
-            get => selectedStep?.altGirlOutfitId ?? 0;
+            get => SelectedStep?.altGirlOutfitId ?? 0;
             set
             {
-                if (Equals(value, selectedStep.altGirlOutfitId)) return;
-                selectedStep.altGirlOutfitId = value;
+                if (Equals(value, SelectedStep.altGirlOutfitId)) return;
+                SelectedStep.altGirlOutfitId = value;
                 OnPropertyChanged();
             }
         }
 
         public string NewLoc
         {
-            get => selectedStep?.newLoc ?? "";
+            get => SelectedStep?.newLoc ?? "";
             set
             {
-                if (Equals(value, selectedStep.newLoc)) return;
-                selectedStep.newLoc = value;
+                if (Equals(value, SelectedStep.newLoc)) return;
+                SelectedStep.newLoc = value;
                 OnPropertyChanged();
+            }
+        }
+        public Step SelectedStep
+        {
+            get => selectedStep;
+            set
+            {
+                if(value == null) return;
+                if (value == selectedStep) return;
+                selectedStep = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Text));
+                OnPropertyChanged(nameof(AltGirlSpeaks));
+                OnPropertyChanged(nameof(Girl));
+                OnPropertyChanged(nameof(GirlHairId));
+                OnPropertyChanged(nameof(GirlOutfitId));
+                OnPropertyChanged(nameof(AltGirl));
+                OnPropertyChanged(nameof(AltGirlHairId));
+                OnPropertyChanged(nameof(AltGirlOutfitId));
+                OnPropertyChanged(nameof(NewLoc));
             }
         }
 

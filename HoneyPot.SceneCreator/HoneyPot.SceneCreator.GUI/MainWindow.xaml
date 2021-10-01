@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HoneyPot.SceneCreator.GUI"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         x:Name="Window">
@@ -40,7 +38,7 @@
 
                 <Label Grid.Row="0">Steps</Label>
 
-                <ListBox Grid.Row="1" x:Name="StepsView" />
+                <ListBox Grid.Row="1" x:Name="StepsView" SelectedItem="{Binding SelectedStep}"/>
             </Grid>
 
             <Grid Grid.Column="1">
