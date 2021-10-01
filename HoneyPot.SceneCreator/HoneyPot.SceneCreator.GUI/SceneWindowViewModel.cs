@@ -68,7 +68,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectGirl()
         {
-            var s = new Selection.Selector(GirlSelectable.InitGirlSelectables());
+            var s = new Selector(GirlSelectable.InitGirlSelectables());
 
             s.ShowDialog();
 
@@ -87,7 +87,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            var s = new Selection.Selector(
+            var s = new Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(Girl,
                     new[] {"8", "9", "10", "11", "12"}));
 
@@ -108,7 +108,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            var s = new Selection.Selector(
+            var s = new Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(Girl,
                     new[] {"13", "14", "15", "16", "17"}));
 
@@ -124,7 +124,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectAltGirl()
         {
-            var s = new Selection.Selector(GirlSelectable.InitGirlSelectables());
+            var s = new Selector(GirlSelectable.InitGirlSelectables());
 
             s.ShowDialog();
 
@@ -143,7 +143,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            var s = new Selection.Selector(
+            var s = new Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl,
                     new[] {"8", "9", "10", "11", "12"}));
 
@@ -164,7 +164,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            var s = new Selection.Selector(
+            var s = new Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl,
                     new[] {"13", "14", "15", "16", "17"}));
 
@@ -180,7 +180,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectNewLoc()
         {
-            var s = new Selection.Selector(LocationSelectable.InitLocationSelectables());
+            var s = new Selector(LocationSelectable.InitLocationSelectables());
 
             s.ShowDialog();
 
@@ -194,7 +194,16 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectExistingDialog()
         {
-            //TODO
+            var s = new Selector(DialogSelectable.InitDialogSelectables());
+
+            s.ShowDialog();
+
+            if (s.Selected == null)
+            {
+                return;
+            }
+
+            DialogId = Convert.ToInt32(s.Selected.ResourcePath);
         }
 
         public string Name

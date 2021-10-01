@@ -261,9 +261,9 @@
     </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Dialogs\dialogs.txt">
+    <AdditionalFiles Include="Resources\Dialogs\dialogs.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </AdditionalFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

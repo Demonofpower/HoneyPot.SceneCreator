@@ -17,7 +17,12 @@
             <Image Source="{Binding ResourcePath}" Height="465" Width="610" Stretch="Fill"/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type selection:DialogSelectable}">
-            <Label Content="{Binding ResourcePath}"></Label>
+            <GroupBox>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{Binding Name}"></Label>
+                    <Label Content="{Binding Girl}"></Label>
+                </StackPanel>
+            </GroupBox>
         </DataTemplate>
     </Window.Resources>
     <Grid ScrollViewer.CanContentScroll="False">
