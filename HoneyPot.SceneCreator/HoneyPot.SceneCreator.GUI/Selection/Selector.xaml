@@ -1,20 +1,23 @@
-﻿<Window x:Class="HoneyPot.SceneCreator.GUI.Selector.Selector"
+﻿<Window x:Class="HoneyPot.SceneCreator.GUI.Selection.Selector"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HoneyPot.SceneCreator.GUI.Selector"
+        xmlns:selection="clr-namespace:HoneyPot.SceneCreator.GUI.Selection"
         mc:Ignorable="d"
         Title="Selector" Height="450" Width="580" x:Name="Window">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type local:GirlSelectable}">
+        <DataTemplate DataType="{x:Type selection:GirlSelectable}">
             <Image Source="{Binding ResourcePath}" Height="130" Width="130"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:GirlOutfitHairstyleSelectable}">
+        <DataTemplate DataType="{x:Type selection:GirlOutfitHairstyleSelectable}">
             <Image Source="{Binding Image}" Height="1000" Width="350"/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type local:LocationSelectable}">
+        <DataTemplate DataType="{x:Type selection:LocationSelectable}">
             <Image Source="{Binding ResourcePath}" Height="465" Width="610" Stretch="Fill"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type selection:DialogSelectable}">
+            <Label Content="{Binding ResourcePath}"></Label>
         </DataTemplate>
     </Window.Resources>
     <Grid ScrollViewer.CanContentScroll="False">

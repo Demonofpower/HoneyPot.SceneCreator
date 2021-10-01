@@ -1,4 +1,4 @@
-﻿namespace HoneyPot.SceneCreator.GUI.Selector
+﻿namespace HoneyPot.SceneCreator.GUI.Selection
 {
     public interface ISelectable
     {

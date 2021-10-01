@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace HoneyPot.SceneCreator.GUI.Selector
+namespace HoneyPot.SceneCreator.GUI.Selection
 {
     /// <summary>
     /// Interaction logic for Selector.xaml

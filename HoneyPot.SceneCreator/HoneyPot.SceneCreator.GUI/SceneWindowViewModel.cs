@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Net.Mime;
-using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
-using HoneyPot.SceneCreator.GUI.Selector;
+using HoneyPot.SceneCreator.GUI.Selection;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-
 
 namespace HoneyPot.SceneCreator.GUI
 {
@@ -71,7 +68,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectGirl()
         {
-            var s = new Selector.Selector(GirlSelectable.InitGirlSelectables());
+            var s = new Selection.Selector(GirlSelectable.InitGirlSelectables());
 
             s.ShowDialog();
 
@@ -90,7 +87,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            var s = new Selector.Selector(
+            var s = new Selection.Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(Girl,
                     new[] {"8", "9", "10", "11", "12"}));
 
@@ -111,7 +108,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            var s = new Selector.Selector(
+            var s = new Selection.Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(Girl,
                     new[] {"13", "14", "15", "16", "17"}));
 
@@ -127,7 +124,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectAltGirl()
         {
-            var s = new Selector.Selector(GirlSelectable.InitGirlSelectables());
+            var s = new Selection.Selector(GirlSelectable.InitGirlSelectables());
 
             s.ShowDialog();
 
@@ -146,7 +143,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            var s = new Selector.Selector(
+            var s = new Selection.Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl,
                     new[] {"8", "9", "10", "11", "12"}));
 
@@ -167,7 +164,7 @@ namespace HoneyPot.SceneCreator.GUI
                 return;
             }
 
-            var s = new Selector.Selector(
+            var s = new Selection.Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(AltGirl,
                     new[] {"13", "14", "15", "16", "17"}));
 
@@ -183,7 +180,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectNewLoc()
         {
-            var s = new Selector.Selector(LocationSelectable.InitLocationSelectables());
+            var s = new Selection.Selector(LocationSelectable.InitLocationSelectables());
 
             s.ShowDialog();
 
@@ -197,7 +194,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectExistingDialog()
         {
-
+            //TODO
         }
 
         public string Name

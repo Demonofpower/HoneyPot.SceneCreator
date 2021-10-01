@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace HoneyPot.SceneCreator.GUI.Selector
+namespace HoneyPot.SceneCreator.GUI.Selection
 {
     public class GirlSelectable : ISelectable
     {

@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace HoneyPot.SceneCreator.GUI.Selector
+namespace HoneyPot.SceneCreator.GUI.Selection
 {
     class GirlOutfitHairstyleSelectable : ISelectable
     {
