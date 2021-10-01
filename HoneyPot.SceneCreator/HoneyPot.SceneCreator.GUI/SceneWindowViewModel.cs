@@ -27,9 +27,10 @@ namespace HoneyPot.SceneCreator.GUI
         private RelayCommand selectAltGirlHairCommand;
         private RelayCommand selectAltGirlOutfitCommand;
         private RelayCommand selectNewLocCommand;
+        private RelayCommand selectExistingDialogCommand;
 
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
-        
+
         public SceneWindowViewModel()
         {
             VisibilityManager = new PropertyVisibilityManager(StepType.DialogLine);
@@ -91,7 +92,7 @@ namespace HoneyPot.SceneCreator.GUI
 
             var s = new Selector.Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(Girl,
-                    new[] { "8", "9", "10", "11", "12" }));
+                    new[] {"8", "9", "10", "11", "12"}));
 
             s.ShowDialog();
 
@@ -112,7 +113,7 @@ namespace HoneyPot.SceneCreator.GUI
 
             var s = new Selector.Selector(
                 GirlOutfitHairstyleSelectable.InitGirlOutfitHairstyleSelectables(Girl,
-                    new[] { "13", "14", "15", "16", "17" }));
+                    new[] {"13", "14", "15", "16", "17"}));
 
             s.ShowDialog();
 
@@ -172,7 +173,7 @@ namespace HoneyPot.SceneCreator.GUI
 
             s.ShowDialog();
 
-            if (s.Selected == null)
+            if (s.Selected == null)a
             {
                 return;
             }
@@ -190,8 +191,13 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 return;
             }
-            
+
             NewLoc = s.Selected.Name;
+        }
+
+        private void SelectExistingDialog()
+        {
+
         }
 
         public string Name
@@ -314,12 +320,25 @@ namespace HoneyPot.SceneCreator.GUI
                 OnPropertyChanged();
             }
         }
+
+        public int DialogId
+        {
+            get => SelectedStep?.dialogId ?? 0;
+            set
+            {
+                if (Equals(value, SelectedStep.dialogId)) return;
+                SelectedStep.dialogId = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public Step SelectedStep
         {
             get => selectedStep;
             set
             {
-                if(value == null) return;
+                if (value == null) return;
                 if (value == selectedStep) return;
                 selectedStep = value;
                 OnPropertyChanged();
@@ -339,6 +358,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
         public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
+
         public RelayCommand SelectGirlCommand =>
             selectGirlCommand ?? (selectGirlCommand = new RelayCommand(SelectGirl));
 
@@ -347,6 +367,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         public RelayCommand SelectGirlOutfitCommand =>
             selectGirlOutfitCommand ?? (selectGirlOutfitCommand = new RelayCommand(SelectGirlOutfit));
+
         public RelayCommand SelectAltGirlCommand =>
             selectAltGirlCommand ?? (selectAltGirlCommand = new RelayCommand(SelectAltGirl));
 
@@ -358,5 +379,8 @@ namespace HoneyPot.SceneCreator.GUI
 
         public RelayCommand SelectNewLocCommand =>
             selectNewLocCommand ?? (selectNewLocCommand = new RelayCommand(SelectNewLoc));
+
+        public RelayCommand SelectExistingDialogCommand =>
+            selectExistingDialogCommand ?? (selectExistingDialogCommand = new RelayCommand(SelectExistingDialog));
     }
 }

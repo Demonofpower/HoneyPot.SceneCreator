@@ -116,6 +116,11 @@
                             <Label Content="{Binding NewLoc}"></Label>
                             <Button Command="{Binding SelectNewLocCommand}">Select</Button>
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.ExistingDialogVisibility}">
+                            <Label>Existing Dialog</Label>
+                            <Label Content="{Binding DialogId}"></Label>
+                            <Button Command="{Binding SelectExistingDialogCommand}">Select</Button>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </Grid>
