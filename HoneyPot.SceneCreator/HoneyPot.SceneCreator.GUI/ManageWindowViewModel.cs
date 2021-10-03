@@ -10,13 +10,16 @@ namespace HoneyPot.SceneCreator.GUI
     public class ManageWindowViewModel : BaseViewModel
     {
         private OpenSceneEventHandler onOpenScene;
+        private CloseSceneEventHandler onCloseScene;
 
-        private RelayCommand newCommand;
-        private RelayCommand loadCommand;
-
-        public ManageWindowViewModel(OpenSceneEventHandler OnOpenScene)
+        public ManageWindowViewModel(OpenSceneEventHandler onOpenScene, CloseSceneEventHandler onCloseScene)
         {
-            onOpenScene = OnOpenScene;
+            this.onOpenScene = onOpenScene;
+            this.onCloseScene = onCloseScene;
+
+            NewCommand = new RelayCommand(New);
+            LoadCommand = new RelayCommand(Load);
+            BackCommand = new RelayCommand(Back);
         }
 
         private void New()
@@ -39,7 +42,14 @@ namespace HoneyPot.SceneCreator.GUI
             Visible = false;
         }
 
-        public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(New));
-        public RelayCommand LoadCommand => loadCommand ?? (loadCommand = new RelayCommand(Load));
+        private void Back()
+        {
+            onCloseScene.Invoke();
+            Visible = true;
+        }
+
+        public RelayCommand NewCommand { get; }
+        public RelayCommand LoadCommand { get; }
+        public RelayCommand BackCommand { get; }
     }
 }

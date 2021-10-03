@@ -18,21 +18,13 @@
 
         public RelayCommand NewCommand { get; }
         public RelayCommand ExportCommand { get; }
-
         public RelayCommand SelectGirlCommand { get; }
-
         public RelayCommand SelectGirlHairCommand { get; }
-
         public RelayCommand SelectGirlOutfitCommand { get; }
-
         public RelayCommand SelectAltGirlCommand { get; }
-
         public RelayCommand SelectAltGirlHairCommand { get; }
-
         public RelayCommand SelectAltGirlOutfitCommand { get; }
-
         public RelayCommand SelectNewLocCommand { get; }
-
         public RelayCommand SelectExistingDialogCommand { get; }
     }
 }

@@ -27,6 +27,8 @@ namespace HoneyPot.SceneCreator.GUI
         {
             currScene = scene;
 
+            Steps.Clear();
+
             if (scene.steps != null)
             {
                 foreach (var sceneStep in scene.steps)
@@ -38,6 +40,11 @@ namespace HoneyPot.SceneCreator.GUI
             Visible = true;
             OnPropertyChanged(nameof(Name));
             OnPropertyChanged(nameof(Author));
+        }
+
+        public void CloseScene()
+        {
+            Visible = false;
         }
 
         public void NewStep()
