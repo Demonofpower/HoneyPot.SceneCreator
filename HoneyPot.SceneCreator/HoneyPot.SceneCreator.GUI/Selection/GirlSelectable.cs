@@ -5,21 +5,26 @@ namespace HoneyPot.SceneCreator.GUI.Selection
 {
     public class GirlSelectable : ISelectable
     {
+        public string Name { get; set; }
+        public string ResourcePath { get; set; }
+
         public GirlSelectable(string name, string resourcePath)
         {
             Name = name;
             ResourcePath = resourcePath;
         }
-        
-        public string Name { get; set; }
-        public string ResourcePath { get; set; }
+
+        public bool CheckIfSearchEligible(string s)
+        {
+            return string.IsNullOrEmpty(s) || Name.Contains(s) || ResourcePath.Contains(s);
+        }
 
         public static List<GirlSelectable> InitGirlSelectables()
         {
             var girls = new List<GirlSelectable>();
 
             var currDir = Directory.GetCurrentDirectory() + @"\Resources\Portraits\";
-            
+
             girls.Add(new GirlSelectable("Aiko", currDir + "Aiko_Portrait.png"));
             girls.Add(new GirlSelectable("Audrey", currDir + "Audrey_Portrait.png"));
             girls.Add(new GirlSelectable("Beli", currDir + "Beli_Portrait.png"));

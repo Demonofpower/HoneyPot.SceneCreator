@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
@@ -10,17 +11,24 @@ namespace HoneyPot.SceneCreator.GUI.Selection
     /// </summary>
     public partial class Selector : Window
     {
+        public ObservableCollection<ISelectable> ObservableSelectables { get; set; }
+
+        private List<ISelectable> selectables;
         private ISelectable selected;
         private string searchText;
 
         public Selector(IEnumerable<ISelectable> values, bool search = false)
         {
+            selectables = new List<ISelectable>(values);
+            ObservableSelectables = new ObservableCollection<ISelectable>(values);
+
             SearchCommand = new RelayCommand(Search);
 
             if (values.FirstOrDefault(x => true)?.GetType() == typeof(GirlOutfitHairstyleSelectable))
             {
                 this.WindowState = WindowState.Maximized;
             }
+
             if (values.FirstOrDefault(x => true)?.GetType() == typeof(LocationSelectable))
             {
                 this.WindowState = WindowState.Maximized;
@@ -29,12 +37,24 @@ namespace HoneyPot.SceneCreator.GUI.Selection
             SearchVisible = search;
 
             InitializeComponent();
-            ListBox.ItemsSource = values;
         }
 
         private void Search()
         {
-            MessageBox.Show(SearchText);
+            var obs = (ObservableCollection<ISelectable>) ListBox.ItemsSource;
+            obs.Clear();
+            foreach (var selectable in selectables)
+            {
+                obs.Add(selectable);
+            }
+
+            var toDelete = new ObservableCollection<ISelectable>(ObservableSelectables.Where(x =>
+                    !x.CheckIfSearchEligible(SearchText)));
+
+            foreach (var selectable in toDelete)
+            {
+                obs.Remove(selectable);
+            }
         }
 
         public ISelectable Selected
@@ -48,7 +68,8 @@ namespace HoneyPot.SceneCreator.GUI.Selection
         }
 
 
-        public string SearchText {
+        public string SearchText
+        {
             get => searchText;
             set
             {

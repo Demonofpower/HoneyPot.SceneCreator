@@ -38,7 +38,7 @@
             <Button Command="{Binding SearchCommand}">Search</Button>
         </StackPanel>
 
-        <ListBox Grid.Row="1" x:Name="ListBox" SelectedItem="{Binding Path=Selected}"
+        <ListBox Grid.Row="1" x:Name="ListBox" ItemsSource="{Binding ObservableSelectables}" SelectedItem="{Binding Path=Selected}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>

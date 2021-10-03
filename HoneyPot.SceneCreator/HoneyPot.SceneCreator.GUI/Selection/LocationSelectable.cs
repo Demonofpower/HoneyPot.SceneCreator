@@ -5,14 +5,19 @@ namespace HoneyPot.SceneCreator.GUI.Selection
 {
     class LocationSelectable : ISelectable
     {
+        public string Name { get; set; }
+        public string ResourcePath { get; set; }
+
         public LocationSelectable(string name, string resourcePath)
         {
             Name = name;
             ResourcePath = resourcePath;
         }
 
-        public string Name { get; set; }
-        public string ResourcePath { get; set; }
+        public bool CheckIfSearchEligible(string s)
+        {
+            return string.IsNullOrEmpty(s) || Name.Contains(s) || ResourcePath.Contains(s);
+        }
 
         public static List<LocationSelectable> InitLocationSelectables()
         {
@@ -22,7 +27,7 @@ namespace HoneyPot.SceneCreator.GUI.Selection
 
             foreach (var file in Directory.GetFiles(currDir))
             {
-                locations.Add(new LocationSelectable(Path.GetFileNameWithoutExtension(file),  file));
+                locations.Add(new LocationSelectable(Path.GetFileNameWithoutExtension(file), file));
             }
 
             return locations;

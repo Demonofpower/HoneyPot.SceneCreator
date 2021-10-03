@@ -8,16 +8,10 @@ namespace HoneyPot.SceneCreator.GUI.Selection
 {
     class GirlOutfitHairstyleSelectable : ISelectable
     {
-        public GirlOutfitHairstyleSelectable(string name, string resourcePath, int resourceId)
-        {
-            Name = name;
-            ResourcePath = resourcePath;
-            ResourceId = resourceId;
-        }
-
         public string Name { get; set; }
         public string ResourcePath { get; set; }
         public int ResourceId { get; set; }
+
         public CroppedBitmap Image
         {
             get
@@ -32,7 +26,20 @@ namespace HoneyPot.SceneCreator.GUI.Selection
             }
         }
 
-        public static List<GirlOutfitHairstyleSelectable> InitGirlOutfitHairstyleSelectables(string girlName, string[] artIds)
+        public GirlOutfitHairstyleSelectable(string name, string resourcePath, int resourceId)
+        {
+            Name = name;
+            ResourcePath = resourcePath;
+            ResourceId = resourceId;
+        }
+
+        public bool CheckIfSearchEligible(string s)
+        {
+            return string.IsNullOrEmpty(s) || Name.Contains(s) || ResourcePath.Contains(s);
+        }
+
+        public static List<GirlOutfitHairstyleSelectable> InitGirlOutfitHairstyleSelectables(string girlName,
+            string[] artIds)
         {
             var hairs = new List<GirlOutfitHairstyleSelectable>();
 

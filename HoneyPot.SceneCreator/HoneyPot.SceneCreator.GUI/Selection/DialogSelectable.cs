@@ -18,15 +18,20 @@ namespace HoneyPot.SceneCreator.GUI.Selection
             Girl = girl;
         }
 
+        public bool CheckIfSearchEligible(string s)
+        {
+            return string.IsNullOrEmpty(s) || Name.Contains(s) || Girl.Contains(s) || ResourcePath.Contains(s);
+        }
+
         public static List<DialogSelectable> InitDialogSelectables()
         {
             var dialogs = new List<DialogSelectable>();
 
             var lines = File.ReadLines(Directory.GetCurrentDirectory() + @"\Resources\Dialogs\dialogs.txt").ToArray();
 
-            for (int i = 0; i < lines.Count() - 4; i+=5)
+            for (int i = 0; i < lines.Count() - 4; i += 5)
             {
-                var dialog = new DialogSelectable(lines[i+3], lines[i], lines[i+2]);
+                var dialog = new DialogSelectable(lines[i + 3], lines[i], lines[i + 2]);
                 dialogs.Add(dialog);
             }
 
