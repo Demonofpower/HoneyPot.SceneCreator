@@ -26,6 +26,15 @@ namespace HoneyPot.SceneCreator.GUI
         public void OpenScene(Scene scene)
         {
             currScene = scene;
+
+            if (scene.steps != null)
+            {
+                foreach (var sceneStep in scene.steps)
+                {
+                    Steps.Add(sceneStep);
+                }
+            }
+
             Visible = true;
             OnPropertyChanged(nameof(Name));
             OnPropertyChanged(nameof(Author));

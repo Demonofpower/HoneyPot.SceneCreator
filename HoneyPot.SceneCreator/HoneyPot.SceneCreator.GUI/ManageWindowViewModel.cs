@@ -1,13 +1,16 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace HoneyPot.SceneCreator.GUI
 {
     public class ManageWindowViewModel : BaseViewModel
     {
         private OpenSceneEventHandler onOpenScene;
-        
+
         private RelayCommand newCommand;
         private RelayCommand loadCommand;
 
@@ -21,10 +24,19 @@ namespace HoneyPot.SceneCreator.GUI
             onOpenScene.Invoke(new Scene() {name = "myScene", author = "myself"});
             Visible = false;
         }
-        
+
         private void Load()
         {
-            MessageBox.Show("yyy");
+            var loadFileDialog = new OpenFileDialog();
+            loadFileDialog.DefaultExt = "txt";
+            loadFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            loadFileDialog.ShowDialog();
+
+            var toLoad = JsonConvert.DeserializeObject<Scene>(File.ReadAllText(loadFileDialog.FileName));
+
+            onOpenScene.Invoke(toLoad);
+            Visible = false;
         }
 
         public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(New));
