@@ -34,8 +34,8 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Visibility="{Binding SearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Label>Search: </Label>
-            <TextBox MinWidth="250" />
-            <Button>Search</Button>
+            <TextBox Text="{Binding SearchText}" MinWidth="250" />
+            <Button Command="{Binding SearchCommand}">Search</Button>
         </StackPanel>
 
         <ListBox Grid.Row="1" x:Name="ListBox" SelectedItem="{Binding Path=Selected}"

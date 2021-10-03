@@ -7,7 +7,6 @@ using HoneyPot.SceneCreator.GUI.SceneObjects;
 using HoneyPot.SceneCreator.GUI.Selection;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Bson;
 
 namespace HoneyPot.SceneCreator.GUI
 {
