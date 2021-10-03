@@ -7,6 +7,7 @@ using HoneyPot.SceneCreator.GUI.SceneObjects;
 using HoneyPot.SceneCreator.GUI.Selection;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Bson;
 
 namespace HoneyPot.SceneCreator.GUI
 {
@@ -15,22 +16,12 @@ namespace HoneyPot.SceneCreator.GUI
         private Scene currScene;
         private Step selectedStep;
 
-        private RelayCommand newCommand;
-        private RelayCommand exportCommand;
-        private RelayCommand selectGirlCommand;
-        private RelayCommand selectGirlHairCommand;
-        private RelayCommand selectGirlOutfitCommand;
-        private RelayCommand selectAltGirlCommand;
-        private RelayCommand selectAltGirlHairCommand;
-        private RelayCommand selectAltGirlOutfitCommand;
-        private RelayCommand selectNewLocCommand;
-        private RelayCommand selectExistingDialogCommand;
-
         public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
 
         public SceneWindowViewModel()
         {
             VisibilityManager = new PropertyVisibilityManager(StepType.DialogLine);
+            CommandManager = new CommandManager(this);
         }
 
         public void OpenScene(Scene scene)
@@ -41,14 +32,14 @@ namespace HoneyPot.SceneCreator.GUI
             OnPropertyChanged(nameof(Author));
         }
 
-        private void NewStep()
+        public void NewStep()
         {
             var newStep = new Step() {id = Steps.Count};
             Steps.Add(newStep);
             SelectedStep = newStep;
         }
 
-        private void Export()
+        public void Export()
         {
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = "scene.txt";
@@ -66,7 +57,7 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
-        private void SelectGirl()
+        public void SelectGirl()
         {
             var s = new Selector(GirlSelectable.InitGirlSelectables());
 
@@ -80,7 +71,7 @@ namespace HoneyPot.SceneCreator.GUI
             Girl = s.Selected.Name;
         }
 
-        private void SelectGirlHair()
+        public void SelectGirlHair()
         {
             if (string.IsNullOrWhiteSpace(Girl))
             {
@@ -101,7 +92,7 @@ namespace HoneyPot.SceneCreator.GUI
             GirlHairId = Convert.ToInt32(s.Selected.Name);
         }
 
-        private void SelectGirlOutfit()
+        public void SelectGirlOutfit()
         {
             if (string.IsNullOrWhiteSpace(Girl))
             {
@@ -122,7 +113,7 @@ namespace HoneyPot.SceneCreator.GUI
             GirlOutfitId = Convert.ToInt32(s.Selected.Name);
         }
 
-        private void SelectAltGirl()
+        public void SelectAltGirl()
         {
             var s = new Selector(GirlSelectable.InitGirlSelectables());
 
@@ -136,7 +127,7 @@ namespace HoneyPot.SceneCreator.GUI
             AltGirl = s.Selected.Name;
         }
 
-        private void SelectAltGirlHair()
+        public void SelectAltGirlHair()
         {
             if (string.IsNullOrWhiteSpace(AltGirl))
             {
@@ -157,7 +148,7 @@ namespace HoneyPot.SceneCreator.GUI
             AltGirlHairId = Convert.ToInt32(s.Selected.Name);
         }
 
-        private void SelectAltGirlOutfit()
+        public void SelectAltGirlOutfit()
         {
             if (string.IsNullOrWhiteSpace(AltGirl))
             {
@@ -178,7 +169,7 @@ namespace HoneyPot.SceneCreator.GUI
             AltGirlOutfitId = Convert.ToInt32(s.Selected.Name);
         }
 
-        private void SelectNewLoc()
+        public void SelectNewLoc()
         {
             var s = new Selector(LocationSelectable.InitLocationSelectables());
 
@@ -192,7 +183,7 @@ namespace HoneyPot.SceneCreator.GUI
             NewLoc = s.Selected.Name;
         }
 
-        private void SelectExistingDialog()
+        public void SelectExistingDialog()
         {
             var s = new Selector(DialogSelectable.InitDialogSelectables(), true);
 
@@ -361,32 +352,6 @@ namespace HoneyPot.SceneCreator.GUI
         }
 
         public PropertyVisibilityManager VisibilityManager { get; }
-
-        public RelayCommand NewCommand => newCommand ?? (newCommand = new RelayCommand(NewStep));
-        public RelayCommand ExportCommand => exportCommand ?? (exportCommand = new RelayCommand(Export));
-
-        public RelayCommand SelectGirlCommand =>
-            selectGirlCommand ?? (selectGirlCommand = new RelayCommand(SelectGirl));
-
-        public RelayCommand SelectGirlHairCommand =>
-            selectGirlHairCommand ?? (selectGirlHairCommand = new RelayCommand(SelectGirlHair));
-
-        public RelayCommand SelectGirlOutfitCommand =>
-            selectGirlOutfitCommand ?? (selectGirlOutfitCommand = new RelayCommand(SelectGirlOutfit));
-
-        public RelayCommand SelectAltGirlCommand =>
-            selectAltGirlCommand ?? (selectAltGirlCommand = new RelayCommand(SelectAltGirl));
-
-        public RelayCommand SelectAltGirlHairCommand =>
-            selectAltGirlHairCommand ?? (selectAltGirlHairCommand = new RelayCommand(SelectAltGirlHair));
-
-        public RelayCommand SelectAltGirlOutfitCommand =>
-            selectAltGirlOutfitCommand ?? (selectAltGirlOutfitCommand = new RelayCommand(SelectAltGirlOutfit));
-
-        public RelayCommand SelectNewLocCommand =>
-            selectNewLocCommand ?? (selectNewLocCommand = new RelayCommand(SelectNewLoc));
-
-        public RelayCommand SelectExistingDialogCommand =>
-            selectExistingDialogCommand ?? (selectExistingDialogCommand = new RelayCommand(SelectExistingDialog));
+        public CommandManager CommandManager { get; }
     }
 }

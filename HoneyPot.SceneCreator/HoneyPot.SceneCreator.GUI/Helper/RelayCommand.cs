@@ -16,8 +16,8 @@ namespace HoneyPot.SceneCreator.GUI.Helper
 
         public event EventHandler CanExecuteChanged
         {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
+            add => System.Windows.Input.CommandManager.RequerySuggested += value;
+            remove => System.Windows.Input.CommandManager.RequerySuggested -= value;
         }
 
         public bool CanExecute(object parameter)
