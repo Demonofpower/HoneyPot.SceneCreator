@@ -7,26 +7,39 @@
         mc:Ignorable="d"
         Title="Selector" Height="450" Width="580" x:Name="Window">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
         <DataTemplate DataType="{x:Type selection:GirlSelectable}">
-            <Image Source="{Binding ResourcePath}" Height="130" Width="130"/>
+            <Image Source="{Binding ResourcePath}" Height="130" Width="130" />
         </DataTemplate>
         <DataTemplate DataType="{x:Type selection:GirlOutfitHairstyleSelectable}">
-            <Image Source="{Binding Image}" Height="1000" Width="350"/>
+            <Image Source="{Binding Image}" Height="1000" Width="350" />
         </DataTemplate>
         <DataTemplate DataType="{x:Type selection:LocationSelectable}">
-            <Image Source="{Binding ResourcePath}" Height="465" Width="610" Stretch="Fill"/>
+            <Image Source="{Binding ResourcePath}" Height="465" Width="610" Stretch="Fill" />
         </DataTemplate>
         <DataTemplate DataType="{x:Type selection:DialogSelectable}">
             <GroupBox>
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding Name}"></Label>
-                    <Label Content="{Binding Girl}"></Label>
+                    <Label Content="{Binding Name}" />
+                    <Label Content="{Binding Girl}" />
                 </StackPanel>
             </GroupBox>
         </DataTemplate>
     </Window.Resources>
-    <Grid ScrollViewer.CanContentScroll="False">
-        <ListBox x:Name="ListBox" SelectedItem="{Binding ElementName=Window, Path=Selected}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+    <Grid ScrollViewer.CanContentScroll="False" DataContext="{Binding ElementName=Window}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Visibility="{Binding SearchVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Label>Search: </Label>
+            <TextBox MinWidth="250" />
+            <Button>Search</Button>
+        </StackPanel>
+
+        <ListBox Grid.Row="1" x:Name="ListBox" SelectedItem="{Binding Path=Selected}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />

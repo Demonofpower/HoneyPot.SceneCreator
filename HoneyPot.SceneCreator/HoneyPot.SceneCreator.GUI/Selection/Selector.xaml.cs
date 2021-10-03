@@ -10,18 +10,8 @@ namespace HoneyPot.SceneCreator.GUI.Selection
     public partial class Selector : Window
     {
         private ISelectable selected;
-        
-        public ISelectable Selected
-        {
-            get => selected;
-            set
-            {
-                selected = value;
-                Close();
-            }
-        }
 
-        public Selector(IEnumerable<ISelectable> values)
+        public Selector(IEnumerable<ISelectable> values, bool search = false)
         {
             if (values.FirstOrDefault(x => true)?.GetType() == typeof(GirlOutfitHairstyleSelectable))
             {
@@ -32,8 +22,21 @@ namespace HoneyPot.SceneCreator.GUI.Selection
                 this.WindowState = WindowState.Maximized;
             }
 
+            SearchVisible = search;
+
             InitializeComponent();
             ListBox.ItemsSource = values;
         }
+        public ISelectable Selected
+        {
+            get => selected;
+            set
+            {
+                selected = value;
+                Close();
+            }
+        }
+
+        public bool SearchVisible { get; }
     }
 }

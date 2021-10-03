@@ -194,7 +194,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void SelectExistingDialog()
         {
-            var s = new Selector(DialogSelectable.InitDialogSelectables());
+            var s = new Selector(DialogSelectable.InitDialogSelectables(), true);
 
             s.ShowDialog();
 
