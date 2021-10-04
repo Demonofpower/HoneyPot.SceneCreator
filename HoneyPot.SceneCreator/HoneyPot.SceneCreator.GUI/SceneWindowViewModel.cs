@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
 using HoneyPot.SceneCreator.GUI.Selection;
@@ -210,6 +211,11 @@ namespace HoneyPot.SceneCreator.GUI
             }
 
             DialogId = Convert.ToInt32(s.Selected.ResourcePath);
+        }
+
+        public void SelectResponseOptions()
+        {
+            MessageBox.Show("x");
         }
 
         public string Name

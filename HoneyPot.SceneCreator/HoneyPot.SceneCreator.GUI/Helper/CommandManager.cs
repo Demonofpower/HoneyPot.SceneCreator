@@ -14,6 +14,7 @@
             SelectAltGirlOutfitCommand = new RelayCommand(viewModel.SelectAltGirlOutfit);
             SelectNewLocCommand = new RelayCommand(viewModel.SelectNewLoc);
             SelectExistingDialogCommand = new RelayCommand(viewModel.SelectExistingDialog);
+            SelectResponsesCommand = new RelayCommand(viewModel.SelectResponseOptions);
         }
 
         public RelayCommand NewCommand { get; }
@@ -26,5 +27,6 @@
         public RelayCommand SelectAltGirlOutfitCommand { get; }
         public RelayCommand SelectNewLocCommand { get; }
         public RelayCommand SelectExistingDialogCommand { get; }
+        public RelayCommand SelectResponsesCommand { get; }
     }
 }

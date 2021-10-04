@@ -27,6 +27,7 @@ namespace HoneyPot.SceneCreator.GUI.Helper
             OnPropertyChanged(nameof(AltGirlOutfitVisibility));
             OnPropertyChanged(nameof(NewLocationVisibility));
             OnPropertyChanged(nameof(ExistingDialogVisibility));
+            OnPropertyChanged(nameof(ResponsesVisibility));
         }
 
         private Visibility GetVisibility(string property)
@@ -53,6 +54,8 @@ namespace HoneyPot.SceneCreator.GUI.Helper
                     return stepType == StepType.Travel ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(ExistingDialogVisibility):
                     return stepType == StepType.ExistingDialogLine ? Visibility.Visible : Visibility.Collapsed;
+                case nameof(ResponsesVisibility):
+                    return stepType == StepType.ResponseOptions ? Visibility.Visible : Visibility.Collapsed;
                 default:
                     throw new InvalidOperationException("Unknown property");
             }
@@ -68,5 +71,6 @@ namespace HoneyPot.SceneCreator.GUI.Helper
         public Visibility AltGirlOutfitVisibility => GetVisibility(nameof(AltGirlOutfitVisibility));
         public Visibility NewLocationVisibility => GetVisibility(nameof(NewLocationVisibility));
         public Visibility ExistingDialogVisibility => GetVisibility(nameof(ExistingDialogVisibility));
+        public Visibility ResponsesVisibility => GetVisibility(nameof(ResponsesVisibility));
     }
 }

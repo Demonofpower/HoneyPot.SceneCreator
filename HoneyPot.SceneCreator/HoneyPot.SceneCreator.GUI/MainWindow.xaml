@@ -122,6 +122,11 @@
                             <Label Content="{Binding DialogId}"></Label>
                             <Button Command="{Binding CommandManager.SelectExistingDialogCommand}">Select</Button>
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.ResponsesVisibility}">
+                            <Label>Responses</Label>
+                            <Label Content="todo"></Label>
+                            <Button Command="{Binding CommandManager.SelectResponsesCommand}">Select</Button>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
 
