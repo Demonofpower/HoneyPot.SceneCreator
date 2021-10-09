@@ -18,7 +18,6 @@ namespace HoneyPot.SceneCreator.GUI
             SceneWindowViewModel = new SceneWindowViewModel();
             OpenScene += SceneWindowViewModel.OpenScene;
             CloseScene += SceneWindowViewModel.CloseScene;
-            SceneWindowViewModel.SelectedStep = new Step() {id = 0};
             
             ManageWindowViewModel = new ManageWindowViewModel(OpenScene, CloseScene);
 

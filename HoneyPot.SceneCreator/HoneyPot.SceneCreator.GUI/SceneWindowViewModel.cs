@@ -369,8 +369,12 @@ namespace HoneyPot.SceneCreator.GUI
                 OnPropertyChanged(nameof(AltGirlHairId));
                 OnPropertyChanged(nameof(AltGirlOutfitId));
                 OnPropertyChanged(nameof(NewLoc));
+
+                OnPropertyChanged(nameof(IsStepVisible));
             }
         }
+
+        public Visibility IsStepVisible => SelectedStep != null ? Visibility.Visible : Visibility.Collapsed;
 
         public PropertyVisibilityManager VisibilityManager { get; }
         public CommandManager CommandManager { get; }
