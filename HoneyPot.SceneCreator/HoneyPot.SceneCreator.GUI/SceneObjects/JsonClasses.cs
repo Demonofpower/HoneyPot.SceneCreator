@@ -6,6 +6,8 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
 {
     public class Step
     {
+        [JsonIgnore] public string StepDescription => id + " - " + type;
+
         public int id { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]

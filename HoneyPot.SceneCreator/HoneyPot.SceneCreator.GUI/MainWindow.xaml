@@ -56,7 +56,7 @@
                             <Button Command="{Binding CommandManager.NewCommand}">Add Step</Button>
                             <Button Command="{Binding CommandManager.ExportCommand}">Export</Button>
                         </StackPanel>
-                        <Button Command="{Binding CommandManager.DeleteCommand}">Delete</Button>
+                        <Button Command="{Binding CommandManager.DeleteCommand}">Delete Step</Button>
                     </StackPanel>
                     
                     <StackPanel HorizontalAlignment="Center">
