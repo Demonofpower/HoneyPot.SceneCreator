@@ -34,12 +34,15 @@ namespace HoneyPot.SceneCreator.GUI
             loadFileDialog.DefaultExt = "txt";
             loadFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
 
+            loadFileDialog.FileOk += (sender, args) =>
+            {
+                var toLoad = JsonConvert.DeserializeObject<Scene>(File.ReadAllText(loadFileDialog.FileName));
+
+                onOpenScene.Invoke(toLoad);
+                Visible = false;
+            };
+
             loadFileDialog.ShowDialog();
-
-            var toLoad = JsonConvert.DeserializeObject<Scene>(File.ReadAllText(loadFileDialog.FileName));
-
-            onOpenScene.Invoke(toLoad);
-            Visible = false;
         }
 
         private void Back()
