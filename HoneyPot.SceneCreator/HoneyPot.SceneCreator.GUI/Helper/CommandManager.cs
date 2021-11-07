@@ -5,6 +5,7 @@
         public CommandManager(SceneWindowViewModel viewModel)
         {
             NewCommand = new RelayCommand(viewModel.NewStep);
+            DeleteCommand = new RelayCommand(viewModel.DeleteStep);
             ExportCommand = new RelayCommand(viewModel.Export);
             SelectGirlCommand = new RelayCommand(viewModel.SelectGirl);
             SelectGirlHairCommand = new RelayCommand(viewModel.SelectGirlHair);
@@ -18,6 +19,7 @@
         }
 
         public RelayCommand NewCommand { get; }
+        public RelayCommand DeleteCommand { get; }
         public RelayCommand ExportCommand { get; }
         public RelayCommand SelectGirlCommand { get; }
         public RelayCommand SelectGirlHairCommand { get; }
