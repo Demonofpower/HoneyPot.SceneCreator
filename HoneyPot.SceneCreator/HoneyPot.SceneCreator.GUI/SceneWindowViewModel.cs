@@ -52,12 +52,13 @@ namespace HoneyPot.SceneCreator.GUI
             var newStep = new Step() {id = Steps.Count};
             Steps.Add(newStep);
             SelectedStep = newStep;
+            MainWindow.UpdateStepType(Steps.Count - 1);
         }
 
         public void DeleteStep()
         {
             Steps.Remove(SelectedStep);
-            SelectedStep = null;
+            OnPropertyChanged(nameof(IsStepVisible));
         }
 
         public void Export()
@@ -379,7 +380,7 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
-        public Visibility IsStepVisible => SelectedStep != null ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility IsStepVisible => SelectedStep != null && Steps.Contains(SelectedStep) ? Visibility.Visible : Visibility.Collapsed;
 
         public PropertyVisibilityManager VisibilityManager { get; }
         public CommandManager CommandManager { get; }

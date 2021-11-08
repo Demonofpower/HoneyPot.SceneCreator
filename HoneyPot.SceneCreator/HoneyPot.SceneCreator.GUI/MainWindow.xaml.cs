@@ -50,6 +50,14 @@ namespace HoneyPot.SceneCreator.GUI
             thisMainWindow?.SortStepView();
         }
 
+        public static void UpdateStepType(int count)
+        {
+            thisMainWindow.CurrentStepLabel.Content = count;
+            thisMainWindow.CurrentStepTypeComboBox.SelectedIndex = 0;
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------
+
         internal void SortStepView()
         {
             var stepsList = MainWindowViewModel.SceneWindowViewModel.Steps;
