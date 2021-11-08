@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
@@ -16,7 +15,7 @@ namespace HoneyPot.SceneCreator.GUI
         private Scene currScene;
         private Step selectedStep;
 
-        public ObservableCollection<Step> Steps { get; set; } = new ObservableCollection<Step>();
+        public StepViewRefreshList Steps { get; set; } = new StepViewRefreshList();
 
         public SceneWindowViewModel()
         {

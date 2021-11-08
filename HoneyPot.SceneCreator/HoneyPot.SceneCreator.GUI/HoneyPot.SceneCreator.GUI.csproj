@@ -62,6 +62,7 @@
     <Compile Include="Helper\CommandManager.cs" />
     <Compile Include="Helper\PropertyVisibilityManager.cs" />
     <Compile Include="Helper\RelayCommand.cs" />
+    <Compile Include="Helper\StepViewRefreshList.cs" />
     <Compile Include="SceneObjects\JsonClasses.cs" />
     <Compile Include="ManageWindowViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />

@@ -32,6 +32,40 @@ namespace HoneyPot.SceneCreator.GUI
             itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.DropEvent,
                 new DragEventHandler(StepsView_OnDrop)));
             StepsView.ItemContainerStyle = itemContainerStyle;
+
+            thisMainWindow = this;
+        }
+
+        //I don´t want to pass an event or instance to any viewmodel so in this case i think static is okay
+        //Also implementing INotifyPropertyChanged inside "Step" class which is also serialized is not that good in my opinion
+        //Pls no kill
+        private static MainWindow thisMainWindow;
+        public static void UpdateStepsList()
+        {
+            thisMainWindow?.StepsView.Items.Refresh();
+        }
+
+        public static void SortStepList()
+        {
+            thisMainWindow?.SortStepView();
+        }
+
+        internal void SortStepView()
+        {
+            var stepsList = MainWindowViewModel.SceneWindowViewModel.Steps;
+
+            var sorted = new List<Step>();
+            for (int i = 0; i < stepsList.Count; i++)
+            {
+                stepsList[i].id = i;
+                sorted.Add(stepsList[i]);
+            }
+
+            stepsList.Clear();
+            foreach (var step in sorted)
+            {
+                stepsList.Add(step);
+            }
         }
 
         private void StepsView_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -76,20 +110,9 @@ namespace HoneyPot.SceneCreator.GUI
                 }
             }
 
-            var sorted = new List<Step>();
-            for (int i = 0; i < stepsList.Count; i++)
-            {
-                stepsList[i].id = i;
-                sorted.Add(stepsList[i]);
-            }
-
-            stepsList.Clear();
-            foreach (var step in sorted)
-            {
-                stepsList.Add(step);
-            }
+            SortStepView();
         }
-
+        
         private void CurrentStepTypeComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
@@ -97,6 +120,8 @@ namespace HoneyPot.SceneCreator.GUI
             var newStepType = (StepType) Enum.Parse(typeof(StepType), (string) selected);
             MainWindowViewModel.SceneWindowViewModel.SelectedStep.type = newStepType;
             MainWindowViewModel.SceneWindowViewModel.VisibilityManager.SetStepType(newStepType);
+
+            UpdateStepsList();
         }
     }
 }
