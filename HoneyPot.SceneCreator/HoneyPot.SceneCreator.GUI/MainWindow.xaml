@@ -38,7 +38,7 @@
 
                 <Label Grid.Row="0">Steps</Label>
 
-                <ListBox Grid.Row="1" x:Name="StepsView" SelectedItem="{Binding SelectedStep}"/>
+                <ListBox Grid.Row="1" x:Name="StepsView" MinWidth="100" SelectedItem="{Binding SelectedStep}"/>
             </Grid>
 
             <Grid Grid.Column="1">
