@@ -55,6 +55,12 @@ namespace HoneyPot.SceneCreator.GUI
             SelectedStep = newStep;
         }
 
+        public void DeleteStep()
+        {
+            Steps.Remove(SelectedStep);
+            SelectedStep = null;
+        }
+
         public void Export()
         {
             var saveFileDialog = new SaveFileDialog();

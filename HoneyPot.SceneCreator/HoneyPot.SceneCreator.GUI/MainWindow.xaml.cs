@@ -22,7 +22,7 @@ namespace HoneyPot.SceneCreator.GUI
             CurrentStepTypeComboBox.ItemsSource = typeof(StepType).GetEnumNames();
 
             StepsView.ItemsSource = MainWindowViewModel.SceneWindowViewModel.Steps;
-            StepsView.DisplayMemberPath = "id";
+            StepsView.DisplayMemberPath = "StepDescription";
 
             //https://stackoverflow.com/a/3352146
             Style itemContainerStyle = new Style(typeof(ListBoxItem));

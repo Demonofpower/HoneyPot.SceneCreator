@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
@@ -34,12 +35,22 @@ namespace HoneyPot.SceneCreator.GUI
             loadFileDialog.DefaultExt = "txt";
             loadFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
 
+            loadFileDialog.FileOk += (sender, args) =>
+            {
+                try
+                {
+                    var toLoad = JsonConvert.DeserializeObject<Scene>(File.ReadAllText(loadFileDialog.FileName));
+
+                    onOpenScene.Invoke(toLoad);
+                    Visible = false;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error while loading scene :( Is the file valid?");
+                }
+            };
+
             loadFileDialog.ShowDialog();
-
-            var toLoad = JsonConvert.DeserializeObject<Scene>(File.ReadAllText(loadFileDialog.FileName));
-
-            onOpenScene.Invoke(toLoad);
-            Visible = false;
         }
 
         private void Back()

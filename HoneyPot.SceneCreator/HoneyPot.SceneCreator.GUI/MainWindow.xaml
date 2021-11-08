@@ -51,10 +51,14 @@
 
 
                 <Grid Grid.Row="0">
-                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                        <Button Command="{Binding CommandManager.NewCommand}">Add Step</Button>
-                        <Button Command="{Binding CommandManager.ExportCommand}">Export</Button>
+                    <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Button Command="{Binding CommandManager.NewCommand}">Add Step</Button>
+                            <Button Command="{Binding CommandManager.ExportCommand}">Export</Button>
+                        </StackPanel>
+                        <Button Command="{Binding CommandManager.DeleteCommand}">Delete Step</Button>
                     </StackPanel>
+                    
                     <StackPanel HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal">
                             <Label>Name</Label>
