@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
@@ -63,6 +64,8 @@ namespace HoneyPot.SceneCreator.GUI
 
         public void Export()
         {
+            SelectedStep.responses = Responses;
+            
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = "scene.txt";
             saveFileDialog.DefaultExt = "txt";
@@ -219,9 +222,10 @@ namespace HoneyPot.SceneCreator.GUI
             DialogId = Convert.ToInt32(s.Selected.ResourcePath);
         }
 
-        public void SelectResponseOptions()
+        public void AddResponseOption()
         {
-            MessageBox.Show("x");
+            Responses.Add(new Response());
+            MainWindow.UpdateResponses();
         }
 
         public string Name
@@ -356,6 +360,8 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public List<Response> Responses;
+
 
         public Step SelectedStep
         {
@@ -364,7 +370,12 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 if (value == null) return;
                 if (value == selectedStep) return;
+                
+                Responses = value.responses;
+                MainWindow.ResetResponseItemsSource();
+                
                 selectedStep = value;
+                
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Text));
                 OnPropertyChanged(nameof(AltGirlSpeaks));
@@ -380,7 +391,9 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
-        public Visibility IsStepVisible => SelectedStep != null && Steps.Contains(SelectedStep) ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility IsStepVisible => SelectedStep != null && Steps.Contains(SelectedStep)
+            ? Visibility.Visible
+            : Visibility.Collapsed;
 
         public PropertyVisibilityManager VisibilityManager { get; }
         public CommandManager CommandManager { get; }

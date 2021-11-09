@@ -69,8 +69,13 @@
                         <Button Command="{Binding CommandManager.DeleteCommand}">Delete Step</Button>
                     </StackPanel>
 
-                    <ItemsControl Grid.Row="1" ItemsSource="{Binding SelectedStep}">
-
+                    <!--<Label Grid.Row="1">a</Label>-->
+                    <ItemsControl Grid.Row="1" x:Name="ResponseOptionsControl">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label>a</Label>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </Grid>
 
@@ -143,13 +148,12 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.ResponsesVisibility}">
                             <Label>Responses</Label>
-                            <Label Content="todo"></Label>
-                            <Button Command="{Binding CommandManager.SelectResponsesCommand}">Select</Button>
+                            <Button Command="{Binding CommandManager.AddResponsesCommand}">Add</Button>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Grid Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <Button Command="{Binding ElementName=Window, Path=MainWindowViewModel.ManageWindowViewModel.BackCommand}">Back</Button>
                 </Grid>
             </Grid>

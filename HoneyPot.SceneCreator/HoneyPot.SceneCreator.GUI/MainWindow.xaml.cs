@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,12 +15,15 @@ namespace HoneyPot.SceneCreator.GUI
     {
         public MainWindowViewModel MainWindowViewModel { get; set; }
 
+
         public MainWindow()
         {
             MainWindowViewModel = new MainWindowViewModel();
             InitializeComponent();
 
             CurrentStepTypeComboBox.ItemsSource = typeof(StepType).GetEnumNames();
+
+            ResponseOptionsControl.ItemsSource = MainWindowViewModel.SceneWindowViewModel.Responses;
 
             StepsView.ItemsSource = MainWindowViewModel.SceneWindowViewModel.Steps;
             StepsView.DisplayMemberPath = "StepDescription";
@@ -32,7 +36,7 @@ namespace HoneyPot.SceneCreator.GUI
             itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.DropEvent,
                 new DragEventHandler(StepsView_OnDrop)));
             StepsView.ItemContainerStyle = itemContainerStyle;
-
+            
             thisMainWindow = this;
         }
 
@@ -56,6 +60,18 @@ namespace HoneyPot.SceneCreator.GUI
             thisMainWindow.CurrentStepTypeComboBox.SelectedIndex = 0;
         }
 
+        public static void UpdateResponses()
+        {
+            thisMainWindow?.ResponseOptionsControl.Items.Refresh();
+        }
+
+        //This shit took me hours to debug
+        public static void ResetResponseItemsSource()
+        {
+            thisMainWindow.ResponseOptionsControl.ItemsSource = null;
+            thisMainWindow.ResponseOptionsControl.ItemsSource = thisMainWindow?.MainWindowViewModel.SceneWindowViewModel.Responses;
+        }
+        
         //-------------------------------------------------------------------------------------------------------------------
 
         internal void SortStepView()
