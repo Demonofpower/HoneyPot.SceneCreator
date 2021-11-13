@@ -76,7 +76,7 @@ namespace HoneyPot.SceneCreator.GUI
         }
 
         //This shit took me hours to debug
-        public static void ResetResponseItemsSource()
+        public static void UpdateResponseItemsSource()
         {
             thisMainWindow.ResponseOptionsControl.ItemsSource = null;
             thisMainWindow.ResponseOptionsControl.ItemsSource =
@@ -169,11 +169,15 @@ namespace HoneyPot.SceneCreator.GUI
             var scene = MainWindowViewModel.SceneWindowViewModel;
             var responseText = label.Content as string;
 
-            var newTreePath = scene.CurrentTreePath + responseText;
+            var newTreePath = scene.CurrentTreePath + "#" + responseText;
 
             if (scene.CurrentResponseDepthString == "Origin")
             {
                 scene.StepTree.AddOrigin(scene.Steps, scene.Name, scene.Author);
+            }
+            else
+            {
+                scene.StepTree.SetStepsForBranch(scene.Steps, scene.CurrentTreePath);
             }
 
             scene.StepTree.AddBranch(newTreePath);
@@ -190,9 +194,13 @@ namespace HoneyPot.SceneCreator.GUI
             scene.CurrentResponseDepthString = responseText;
 
             scene.CurrentTreePath = newTreePath;
-            
+
+            scene.Responses = new List<Response>();
+
             UpdateStepsListItemSource();
             UpdateStepsList();
+            UpdateResponseItemsSource();
+            UpdateResponses();
         }
 
         private void ReturnToOriginClick(object sender, RoutedEventArgs e)
@@ -211,9 +219,13 @@ namespace HoneyPot.SceneCreator.GUI
             scene.OpenScene(originScene);
 
             scene.CurrentTreePath = "0";
-            
+
+            //scene.Responses = new List<Response>();
+
             UpdateStepsListItemSource();
             UpdateStepsList();
+            UpdateResponseItemsSource();
+            UpdateResponses();
         }
     }
 }

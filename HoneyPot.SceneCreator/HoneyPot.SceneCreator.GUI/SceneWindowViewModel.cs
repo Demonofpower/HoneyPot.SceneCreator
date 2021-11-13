@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
@@ -69,10 +70,51 @@ namespace HoneyPot.SceneCreator.GUI
             OnPropertyChanged(nameof(IsStepVisible));
         }
 
+        private List<Tuple<string, List<Step>>> GetStepsWithCurrentDepth(int depth)
+        {
+            var matchingStrings = StepTree.Steps.Keys.GroupBy(k => k.Split('#').Length).FirstOrDefault(x => x.Key == depth + 1).ToList();
+            var list = StepTree.Steps.Where(s => matchingStrings.Contains(s.Key));
+
+            return list.Select(keyValuePair => new Tuple<string, List<Step>>(keyValuePair.Key, keyValuePair.Value)).ToList();
+        }
+
+        private string RemoveDepth(string s, int depth)
+        {
+            return s.Split('#')[depth];
+        }
+        
         public void Export()
         {
-            SelectedStep.responses = Responses;
+            var sortedList = StepTree.Steps.Keys.GroupBy(k => k.Split('#').Length);
+            
+            foreach (var innerList in sortedList)
+            {
+                var number = innerList.Key;
+                var values = innerList.ToList();
+              
+            }
 
+            var root = StepTree.Steps["0"];
+
+            foreach (var rootStep in root)
+            {
+                if (rootStep.type == StepType.ResponseOptions)
+                {
+                    var matchingSteps = GetStepsWithCurrentDepth(1);
+                  
+                    foreach (var rootStepResponse in rootStep.responses)
+                    {
+                        foreach (var matchingStep in matchingSteps)
+                        {
+                            if (RemoveDepth(matchingStep.Item1, 1) == rootStepResponse.text)
+                            {
+                                rootStepResponse.steps = matchingStep.Item2;
+                            }
+                        }
+                    }
+                }
+            }
+            
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = "scene.txt";
             saveFileDialog.DefaultExt = "txt";
@@ -419,7 +461,7 @@ namespace HoneyPot.SceneCreator.GUI
                 if (value == selectedStep) return;
 
                 Responses = value.responses;
-                MainWindow.ResetResponseItemsSource();
+                MainWindow.UpdateResponseItemsSource();
 
                 selectedStep = value;
 
