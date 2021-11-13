@@ -18,27 +18,15 @@ namespace HoneyPot.SceneCreator.GUI
 
         public StepViewRefreshList Steps { get; set; } = new StepViewRefreshList();
 
-        public SceneWindowViewModel OriginScene = null;
-
-        public void CreateOriginScene()
-        {
-            OriginScene = new SceneWindowViewModel();
-            OriginScene.Steps = new StepViewRefreshList();
-            foreach (var step in Steps)
-            {
-                OriginScene.Steps.Add(step);
-            }
-
-            OriginScene.currScene = new Scene();
-            
-            OriginScene.Author = Author;
-            OriginScene.Name = Name;
-        }
+        public StepTree StepTree = new StepTree();
+        
 
         public SceneWindowViewModel()
         {
             VisibilityManager = new PropertyVisibilityManager(StepType.DialogLine);
             CommandManager = new CommandManager(this);
+
+            CurrentTreePath = "0";
         }
 
         public void OpenScene(Scene scene)
@@ -375,6 +363,19 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 if (Equals(value, SelectedStep.dialogId)) return;
                 SelectedStep.dialogId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string currentTreePath;
+
+        public string CurrentTreePath
+        {
+            get => currentTreePath;
+            set
+            {
+                if (Equals(value, currentTreePath)) return;
+                currentTreePath = value;
                 OnPropertyChanged();
             }
         }

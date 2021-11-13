@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
 
 namespace HoneyPot.SceneCreator.GUI
@@ -49,6 +50,13 @@ namespace HoneyPot.SceneCreator.GUI
         public static void UpdateStepsList()
         {
             thisMainWindow?.StepsView.Items.Refresh();
+        }
+
+        public static void UpdateStepsListItemSource()
+        {
+            thisMainWindow.StepsView.ItemsSource = null;
+            thisMainWindow.StepsView.ItemsSource = thisMainWindow.MainWindowViewModel.SceneWindowViewModel.Steps;
+
         }
 
         public static void SortStepList()
@@ -161,30 +169,51 @@ namespace HoneyPot.SceneCreator.GUI
             var scene = MainWindowViewModel.SceneWindowViewModel;
             var responseText = label.Content as string;
 
+            var newTreePath = scene.CurrentTreePath + responseText;
+
+            if (scene.CurrentResponseDepthString == "Origin")
+            {
+                scene.StepTree.AddOrigin(scene.Steps, scene.Name, scene.Author);
+            }
+
+            scene.StepTree.AddBranch(newTreePath);
+
             var newScene = new Scene()
             {
-                author = scene.Author, name = scene.Name,
-                steps = scene.Responses.First(r => r.text == responseText).steps
+                author = scene.Author,
+                name = scene.Name,
+                steps = scene.StepTree.Steps[newTreePath]
             };
 
-            scene.CreateOriginScene();
             scene.OpenScene(newScene);
-            
+
             scene.CurrentResponseDepthString = responseText;
+
+            scene.CurrentTreePath = newTreePath;
+            
+            UpdateStepsListItemSource();
+            UpdateStepsList();
         }
 
         private void ReturnToOriginClick(object sender, RoutedEventArgs e)
         {
             var scene = MainWindowViewModel.SceneWindowViewModel;
 
+            scene.StepTree.SetStepsForBranch(scene.Steps, scene.CurrentTreePath);
+
             var originScene = new Scene()
             {
-                author = scene.OriginScene.Author,
-                name = scene.OriginScene.Name,
-                steps = new List<Step>(scene.OriginScene.Steps)
+                author = scene.StepTree.Author,
+                name = scene.StepTree.Name,
+                steps = new List<Step>(scene.StepTree.Steps["0"])
             };
 
             scene.OpenScene(originScene);
+
+            scene.CurrentTreePath = "0";
+            
+            UpdateStepsListItemSource();
+            UpdateStepsList();
         }
     }
 }
