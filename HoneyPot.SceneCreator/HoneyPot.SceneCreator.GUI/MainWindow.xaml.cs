@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,7 +37,7 @@ namespace HoneyPot.SceneCreator.GUI
             itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.DropEvent,
                 new DragEventHandler(StepsView_OnDrop)));
             StepsView.ItemContainerStyle = itemContainerStyle;
-            
+
             thisMainWindow = this;
         }
 
@@ -44,6 +45,7 @@ namespace HoneyPot.SceneCreator.GUI
         //Also implementing INotifyPropertyChanged inside "Step" class which is also serialized is not that good in my opinion
         //Pls no kill
         private static MainWindow thisMainWindow;
+
         public static void UpdateStepsList()
         {
             thisMainWindow?.StepsView.Items.Refresh();
@@ -69,9 +71,10 @@ namespace HoneyPot.SceneCreator.GUI
         public static void ResetResponseItemsSource()
         {
             thisMainWindow.ResponseOptionsControl.ItemsSource = null;
-            thisMainWindow.ResponseOptionsControl.ItemsSource = thisMainWindow?.MainWindowViewModel.SceneWindowViewModel.Responses;
+            thisMainWindow.ResponseOptionsControl.ItemsSource =
+                thisMainWindow?.MainWindowViewModel.SceneWindowViewModel.Responses;
         }
-        
+
         //-------------------------------------------------------------------------------------------------------------------
 
         internal void SortStepView()
@@ -136,7 +139,7 @@ namespace HoneyPot.SceneCreator.GUI
 
             SortStepView();
         }
-        
+
         private void CurrentStepTypeComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
@@ -146,6 +149,42 @@ namespace HoneyPot.SceneCreator.GUI
             MainWindowViewModel.SceneWindowViewModel.VisibilityManager.SetStepType(newStepType);
 
             UpdateStepsList();
+        }
+
+        private void SwitchStepsBranchClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!(sender is Label label))
+            {
+                return;
+            }
+
+            var scene = MainWindowViewModel.SceneWindowViewModel;
+            var responseText = label.Content as string;
+
+            var newScene = new Scene()
+            {
+                author = scene.Author, name = scene.Name,
+                steps = scene.Responses.First(r => r.text == responseText).steps
+            };
+
+            scene.CreateOriginScene();
+            scene.OpenScene(newScene);
+            
+            scene.CurrentResponseDepthString = responseText;
+        }
+
+        private void ReturnToOriginClick(object sender, RoutedEventArgs e)
+        {
+            var scene = MainWindowViewModel.SceneWindowViewModel;
+
+            var originScene = new Scene()
+            {
+                author = scene.OriginScene.Author,
+                name = scene.OriginScene.Name,
+                steps = new List<Step>(scene.OriginScene.Steps)
+            };
+
+            scene.OpenScene(originScene);
         }
     }
 }

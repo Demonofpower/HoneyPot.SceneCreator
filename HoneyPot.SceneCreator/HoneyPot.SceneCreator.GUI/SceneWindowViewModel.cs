@@ -18,6 +18,23 @@ namespace HoneyPot.SceneCreator.GUI
 
         public StepViewRefreshList Steps { get; set; } = new StepViewRefreshList();
 
+        public SceneWindowViewModel OriginScene = null;
+
+        public void CreateOriginScene()
+        {
+            OriginScene = new SceneWindowViewModel();
+            OriginScene.Steps = new StepViewRefreshList();
+            foreach (var step in Steps)
+            {
+                OriginScene.Steps.Add(step);
+            }
+
+            OriginScene.currScene = new Scene();
+            
+            OriginScene.Author = Author;
+            OriginScene.Name = Name;
+        }
+
         public SceneWindowViewModel()
         {
             VisibilityManager = new PropertyVisibilityManager(StepType.DialogLine);
@@ -372,6 +389,7 @@ namespace HoneyPot.SceneCreator.GUI
                 if (Equals(value, currentResponseDepthString)) return;
                 currentResponseDepthString = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsOriginButtonVisible));
             }
         }
 
@@ -422,6 +440,8 @@ namespace HoneyPot.SceneCreator.GUI
         public Visibility IsStepVisible => SelectedStep != null && Steps.Contains(SelectedStep)
             ? Visibility.Visible
             : Visibility.Collapsed;
+
+        public Visibility IsOriginButtonVisible => CurrentResponseDepthString != "Origin" ? Visibility.Visible : Visibility.Collapsed;
 
         public PropertyVisibilityManager VisibilityManager { get; }
         public CommandManager CommandManager { get; }

@@ -69,6 +69,8 @@ namespace HoneyPot.SceneCreator.GUI.Helper
 
         public void RemoveAt(int index)
         {
+            if (index == -1) return;
+            
             innerList.RemoveAt(index);
             MainWindow.SortStepList();
             MainWindow.UpdateStepsList();
