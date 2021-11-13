@@ -38,6 +38,8 @@ namespace HoneyPot.SceneCreator.GUI
                 }
             }
 
+            CurrentResponseDepthString = "Origin";
+
             Visible = true;
             OnPropertyChanged(nameof(Name));
             OnPropertyChanged(nameof(Author));
@@ -356,6 +358,19 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 if (Equals(value, SelectedStep.dialogId)) return;
                 SelectedStep.dialogId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string currentResponseDepthString;
+
+        public string CurrentResponseDepthString
+        {
+            get => currentResponseDepthString;
+            set
+            {
+                if (Equals(value, currentResponseDepthString)) return;
+                currentResponseDepthString = value;
                 OnPropertyChanged();
             }
         }

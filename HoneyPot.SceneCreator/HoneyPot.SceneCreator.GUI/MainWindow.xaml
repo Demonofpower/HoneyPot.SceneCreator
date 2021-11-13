@@ -38,7 +38,10 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0">Steps</Label>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Label >Steps</Label>
+                    <Label Content="{Binding CurrentResponseDepthString}"></Label>
+                </StackPanel>
 
                 <ListBox Grid.Row="1" x:Name="StepsView" MinWidth="100" SelectedItem="{Binding SelectedStep}"/>
             </Grid>
