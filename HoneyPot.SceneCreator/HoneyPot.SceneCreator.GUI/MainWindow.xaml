@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gui="clr-namespace:HoneyPot.SceneCreator.GUI"
+        xmlns:sceneObjects="clr-namespace:HoneyPot.SceneCreator.GUI.SceneObjects"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         x:Name="Window">
@@ -69,20 +71,15 @@
                         <Button Command="{Binding CommandManager.DeleteCommand}">Delete Step</Button>
                     </StackPanel>
 
-                    <ItemsControl Grid.Row="1" x:Name="ResponseOptionsControl">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ListBox>
-                                    <ListBoxItem>xx</ListBoxItem>
-                                </ListBox>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <TreeView Grid.Row="1" x:Name="ResponseOptionsControl">
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type sceneObjects:Response}" ItemsSource="{Binding steps}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{Binding text}"></Label>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="0">
@@ -153,7 +150,9 @@
                             <Button Command="{Binding CommandManager.SelectExistingDialogCommand}">Select</Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.ResponsesVisibility}">
-                            <Label>Responses</Label>
+                            <Label>New Response</Label>
+                            <Label>Text:</Label>
+                            <TextBox Text="{Binding ResponseText}" MinWidth="60"></TextBox>
                             <Button Command="{Binding CommandManager.AddResponsesCommand}">Add</Button>
                         </StackPanel>
                     </StackPanel>

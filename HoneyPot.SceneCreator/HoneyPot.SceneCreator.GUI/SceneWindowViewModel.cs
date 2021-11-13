@@ -65,7 +65,7 @@ namespace HoneyPot.SceneCreator.GUI
         public void Export()
         {
             SelectedStep.responses = Responses;
-            
+
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = "scene.txt";
             saveFileDialog.DefaultExt = "txt";
@@ -224,7 +224,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         public void AddResponseOption()
         {
-            Responses.Add(new Response());
+            Responses.Add(new Response() {text = ResponseText});
             MainWindow.UpdateResponses();
         }
 
@@ -360,7 +360,20 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
-        public List<Response> Responses;
+        private string responseText;
+
+        public string ResponseText
+        {
+            get => responseText;
+            set
+            {
+                if (Equals(value, responseText)) return;
+                responseText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<Response> Responses { get; set; }
 
 
         public Step SelectedStep
@@ -370,12 +383,12 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 if (value == null) return;
                 if (value == selectedStep) return;
-                
+
                 Responses = value.responses;
                 MainWindow.ResetResponseItemsSource();
-                
+
                 selectedStep = value;
-                
+
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Text));
                 OnPropertyChanged(nameof(AltGirlSpeaks));
