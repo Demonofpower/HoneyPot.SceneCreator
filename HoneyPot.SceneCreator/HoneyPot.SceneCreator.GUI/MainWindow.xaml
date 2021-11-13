@@ -69,11 +69,17 @@
                         <Button Command="{Binding CommandManager.DeleteCommand}">Delete Step</Button>
                     </StackPanel>
 
-                    <!--<Label Grid.Row="1">a</Label>-->
                     <ItemsControl Grid.Row="1" x:Name="ResponseOptionsControl">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Label>a</Label>
+                                <ListBox>
+                                    <ListBoxItem>xx</ListBoxItem>
+                                </ListBox>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
