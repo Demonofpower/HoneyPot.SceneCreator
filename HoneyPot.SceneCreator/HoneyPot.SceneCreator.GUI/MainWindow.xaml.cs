@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
 
@@ -29,16 +30,7 @@ namespace HoneyPot.SceneCreator.GUI
 
             StepsView.ItemsSource = MainWindowViewModel.SceneWindowViewModel.Steps;
             StepsView.DisplayMemberPath = "StepDescription";
-
-            //https://stackoverflow.com/a/3352146
-            Style itemContainerStyle = new Style(typeof(ListBoxItem));
-            itemContainerStyle.Setters.Add(new Setter(ListBoxItem.AllowDropProperty, true));
-            itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.PreviewMouseLeftButtonDownEvent,
-                new MouseButtonEventHandler(StepsView_OnPreviewMouseLeftButtonDown)));
-            itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.DropEvent,
-                new DragEventHandler(StepsView_OnDrop)));
-            StepsView.ItemContainerStyle = itemContainerStyle;
-
+            
             thisMainWindow = this;
         }
 
@@ -149,7 +141,7 @@ namespace HoneyPot.SceneCreator.GUI
                     stepsList.RemoveAt(remIdx);
                 }
             }
-
+            
             SortStepView();
         }
 
@@ -161,7 +153,10 @@ namespace HoneyPot.SceneCreator.GUI
             MainWindowViewModel.SceneWindowViewModel.SelectedStep.type = newStepType;
             MainWindowViewModel.SceneWindowViewModel.VisibilityManager.SetStepType(newStepType);
 
+            MainWindowViewModel.SceneWindowViewModel.SelectedStep.IsCurrentlySelected = true;
+
             UpdateStepsList();
+            UpdateStepsListItemSource();
         }
 
         private void SwitchStepsBranchClick(object sender, MouseButtonEventArgs e)
@@ -224,9 +219,7 @@ namespace HoneyPot.SceneCreator.GUI
             scene.OpenScene(originScene);
 
             scene.CurrentTreePath = "0";
-
-            //scene.Responses = new List<Response>();
-
+            
             UpdateStepsListItemSource();
             UpdateStepsList();
             UpdateResponseItemsSource();

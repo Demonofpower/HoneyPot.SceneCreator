@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
 using HoneyPot.SceneCreator.GUI.Selection;
@@ -465,6 +466,14 @@ namespace HoneyPot.SceneCreator.GUI
                 Responses = value.responses;
                 MainWindow.UpdateResponseItemsSource();
 
+                if (selectedStep != null)
+                {
+                    selectedStep.IsCurrentlySelected = false;
+                    OnPropertyChanged(nameof(selectedStep.StepSelectionColor));
+                }
+                value.IsCurrentlySelected = true;
+                OnPropertyChanged(nameof(value.StepSelectionColor));
+                
                 selectedStep = value;
 
                 OnPropertyChanged();

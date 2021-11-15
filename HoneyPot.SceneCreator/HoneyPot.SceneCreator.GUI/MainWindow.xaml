@@ -10,6 +10,16 @@
         x:Name="Window">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+        <!--//https://stackoverflow.com/a/3352146-->
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="AllowDrop" Value="True" />
+            <EventSetter Event="PreviewMouseLeftButtonDown"
+                         Handler="StepsView_OnPreviewMouseLeftButtonDown" />
+            <EventSetter Event="Drop" Handler="StepsView_OnDrop"></EventSetter>
+
+            <Setter Property="Background" Value="{Binding StepSelectionColor}"></Setter>
+        </Style>
     </Window.Resources>
     <Grid
         DataContext="{Binding ElementName=Window, Path=MainWindowViewModel}">
@@ -39,31 +49,31 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Label >Steps</Label>
-                    <Label Content="{Binding CurrentResponseDepthString}"></Label>
+                    <Label>Steps</Label>
+                    <Label Content="{Binding CurrentResponseDepthString}" />
                 </StackPanel>
 
-                <ListBox Grid.Row="1" x:Name="StepsView" MinWidth="100" SelectedItem="{Binding SelectedStep}"/>
+                <ListBox Grid.Row="1" x:Name="StepsView" MinWidth="100" SelectedItem="{Binding SelectedStep}" />
             </Grid>
 
             <Grid Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
 
                 </Grid.RowDefinitions>
 
 
                 <Grid Grid.Column="0" Grid.Row="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0" HorizontalAlignment="Left" Orientation="Vertical">
@@ -77,9 +87,10 @@
                     <StackPanel Grid.Row="1" Orientation="Vertical">
                         <TreeView x:Name="ResponseOptionsControl">
                             <TreeView.ItemTemplate>
-                                <HierarchicalDataTemplate DataType="{x:Type sceneObjects:Response}" ItemsSource="{Binding steps}">
+                                <HierarchicalDataTemplate DataType="{x:Type sceneObjects:Response}"
+                                                          ItemsSource="{Binding steps}">
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding text}" MouseDown="SwitchStepsBranchClick"></Label>
+                                        <Label Content="{Binding text}" MouseDown="SwitchStepsBranchClick" />
                                     </StackPanel>
                                 </HierarchicalDataTemplate>
                             </TreeView.ItemTemplate>
@@ -101,71 +112,85 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsStepVisible}">
+                <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Visibility="{Binding IsStepVisible}">
                     <StackPanel>
                         <Label x:Name="CurrentStepLabel" />
                         <ComboBox x:Name="CurrentStepTypeComboBox"
                                   SelectionChanged="CurrentStepTypeComboBox_OnSelectionChanged" />
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.TextVisibility}">
                             <Label>Text</Label>
-                            <TextBox Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="100"/>
+                            <TextBox Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MinWidth="100" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlSpeaksVisibility}">
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.AltGirlSpeaksVisibility}">
                             <Label>Alt girl speaks</Label>
                             <CheckBox
-                                IsChecked="{Binding AltGirlSpeaks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                                IsChecked="{Binding AltGirlSpeaks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                VerticalAlignment="Center" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.GirlVisibility}">
                             <Label>Girl</Label>
-                            <Label Content="{Binding Girl}"></Label>
+                            <Label Content="{Binding Girl}" />
                             <Button Command="{Binding CommandManager.SelectGirlCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.GirlHairVisibility}">
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.GirlHairVisibility}">
                             <Label>Girl hair</Label>
-                            <Label Content="{Binding GirlHairId}"></Label>
+                            <Label Content="{Binding GirlHairId}" />
                             <Button Command="{Binding CommandManager.SelectGirlHairCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.GirlOutfitVisibility}">
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.GirlOutfitVisibility}">
                             <Label>Girl outfit</Label>
-                            <Label Content="{Binding GirlOutfitId}"></Label>
+                            <Label Content="{Binding GirlOutfitId}" />
                             <Button Command="{Binding CommandManager.SelectGirlOutfitCommand}">Select</Button>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlVisibility}">
                             <Label>Alt girl</Label>
-                            <Label Content="{Binding AltGirl}"></Label>
+                            <Label Content="{Binding AltGirl}" />
                             <Button Command="{Binding CommandManager.SelectAltGirlCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlHairVisibility}">
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.AltGirlHairVisibility}">
                             <Label>Alt girl hair</Label>
-                            <Label Content="{Binding AltGirlHairId}"></Label>
+                            <Label Content="{Binding AltGirlHairId}" />
                             <Button Command="{Binding CommandManager.SelectAltGirlHairCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.AltGirlOutfitVisibility}">
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.AltGirlOutfitVisibility}">
                             <Label>Alt girl outfit</Label>
-                            <Label Content="{Binding AltGirlOutfitId}"></Label>
+                            <Label Content="{Binding AltGirlOutfitId}" />
                             <Button Command="{Binding CommandManager.SelectAltGirlOutfitCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.NewLocationVisibility}">
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.NewLocationVisibility}">
                             <Label>New Location</Label>
-                            <Label Content="{Binding NewLoc}"></Label>
+                            <Label Content="{Binding NewLoc}" />
                             <Button Command="{Binding CommandManager.SelectNewLocCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.ExistingDialogVisibility}">
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.ExistingDialogVisibility}">
                             <Label>Existing Dialog</Label>
-                            <Label Content="{Binding DialogId}"></Label>
+                            <Label Content="{Binding DialogId}" />
                             <Button Command="{Binding CommandManager.SelectExistingDialogCommand}">Select</Button>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Visibility="{Binding VisibilityManager.ResponsesVisibility}">
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.ResponsesVisibility}">
                             <Label>New Response</Label>
                             <Label>Text:</Label>
-                            <TextBox Text="{Binding ResponseText}" MinWidth="60"></TextBox>
+                            <TextBox Text="{Binding ResponseText}" MinWidth="60" />
                             <Button Command="{Binding CommandManager.AddResponsesCommand}">Add</Button>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    <Button Command="{Binding ElementName=Window, Path=MainWindowViewModel.ManageWindowViewModel.BackCommand}">Back</Button>
+                    <Button
+                        Command="{Binding ElementName=Window, Path=MainWindowViewModel.ManageWindowViewModel.BackCommand}">
+                        Back
+                    </Button>
                 </Grid>
             </Grid>
 

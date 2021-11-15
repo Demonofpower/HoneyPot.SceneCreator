@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Media;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -6,6 +7,8 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
 {
     public class Step
     {
+        [JsonIgnore] public bool IsCurrentlySelected { get; set; }
+        [JsonIgnore] public SolidColorBrush StepSelectionColor => IsCurrentlySelected ? new SolidColorBrush(Colors.DarkGreen) : new SolidColorBrush(Colors.Transparent);
         [JsonIgnore] public string StepDescription => id + " - " + type;
 
         public Step()
