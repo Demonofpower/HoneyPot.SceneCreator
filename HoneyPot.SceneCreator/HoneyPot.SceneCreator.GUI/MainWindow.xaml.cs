@@ -75,7 +75,7 @@ namespace HoneyPot.SceneCreator.GUI
             thisMainWindow?.ResponseOptionsControl.Items.Refresh();
         }
 
-        //This shit took me hours to debug
+        //This shit took me hours to debug.. and its a noob mistake
         public static void UpdateResponseItemsSource()
         {
             thisMainWindow.ResponseOptionsControl.ItemsSource = null;
@@ -92,6 +92,11 @@ namespace HoneyPot.SceneCreator.GUI
             var sorted = new List<Step>();
             for (int i = 0; i < stepsList.Count; i++)
             {
+                if (stepsList[i] is null)
+                {
+                    continue;
+                }
+                
                 stepsList[i].id = i;
                 sorted.Add(stepsList[i]);
             }
