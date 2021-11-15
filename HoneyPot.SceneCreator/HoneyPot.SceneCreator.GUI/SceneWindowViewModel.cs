@@ -91,30 +91,32 @@ namespace HoneyPot.SceneCreator.GUI
             {
                 var number = innerList.Key;
                 var values = innerList.ToList();
-              
-            }
 
-            var root = StepTree.Steps["0"];
-
-            foreach (var rootStep in root)
-            {
-                if (rootStep.type == StepType.ResponseOptions)
+                foreach (var value in values)
                 {
-                    var matchingSteps = GetStepsWithCurrentDepth(1);
-                  
-                    foreach (var rootStepResponse in rootStep.responses)
+                    var root = StepTree.Steps[value];
+
+                    foreach (var rootStep in root)
                     {
-                        foreach (var matchingStep in matchingSteps)
+                        if (rootStep.type == StepType.ResponseOptions)
                         {
-                            if (RemoveDepth(matchingStep.Item1, 1) == rootStepResponse.text)
+                            var matchingSteps = GetStepsWithCurrentDepth(number);
+
+                            foreach (var rootStepResponse in rootStep.responses)
                             {
-                                rootStepResponse.steps = matchingStep.Item2;
+                                foreach (var matchingStep in matchingSteps)
+                                {
+                                    if (RemoveDepth(matchingStep.Item1, number) == rootStepResponse.text)
+                                    {
+                                        rootStepResponse.steps = matchingStep.Item2;
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-            
+
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = "scene.txt";
             saveFileDialog.DefaultExt = "txt";
