@@ -219,6 +219,11 @@ namespace HoneyPot.SceneCreator.GUI
             scene.OpenScene(originScene);
 
             scene.CurrentTreePath = "0";
+
+            foreach (var sceneStep in scene.Steps)
+            {
+                sceneStep.IsCurrentlySelected = false;
+            }
             
             UpdateStepsListItemSource();
             UpdateStepsList();

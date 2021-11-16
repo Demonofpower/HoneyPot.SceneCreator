@@ -461,7 +461,6 @@ namespace HoneyPot.SceneCreator.GUI
             set
             {
                 if (value == null) return;
-                if (value == selectedStep) return;
 
                 Responses = value.responses;
                 MainWindow.UpdateResponseItemsSource();
