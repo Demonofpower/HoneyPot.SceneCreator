@@ -10,16 +10,6 @@
         x:Name="Window">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
-        <!--//https://stackoverflow.com/a/3352146-->
-        <Style TargetType="{x:Type ListBoxItem}">
-            <Setter Property="AllowDrop" Value="True" />
-            <EventSetter Event="PreviewMouseLeftButtonDown"
-                         Handler="StepsView_OnPreviewMouseLeftButtonDown" />
-            <EventSetter Event="Drop" Handler="StepsView_OnDrop"></EventSetter>
-
-            <Setter Property="Background" Value="{Binding StepSelectionColor}"></Setter>
-        </Style>
     </Window.Resources>
     <Grid
         DataContext="{Binding ElementName=Window, Path=MainWindowViewModel}">
@@ -53,7 +43,19 @@
                     <Label Content="{Binding CurrentResponseDepthString}" />
                 </StackPanel>
 
-                <ListBox Grid.Row="1" x:Name="StepsView" MinWidth="100" SelectedItem="{Binding SelectedStep}" />
+                <ListBox Grid.Row="1" x:Name="StepsView" MinWidth="100" SelectedItem="{Binding SelectedStep}">
+                    <ListBox.Resources>
+                        <!--//https://stackoverflow.com/a/3352146-->
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="AllowDrop" Value="True" />
+                            <EventSetter Event="PreviewMouseLeftButtonDown"
+                                         Handler="StepsView_OnPreviewMouseLeftButtonDown" />
+                            <EventSetter Event="Drop" Handler="StepsView_OnDrop" />
+
+                            <Setter Property="Background" Value="{Binding StepSelectionColor}" />
+                        </Style>
+                    </ListBox.Resources>
+                </ListBox>
             </Grid>
 
             <Grid Grid.Column="1">
@@ -85,16 +87,13 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <TreeView x:Name="ResponseOptionsControl">
-                            <TreeView.ItemTemplate>
-                                <HierarchicalDataTemplate DataType="{x:Type sceneObjects:Response}"
-                                                          ItemsSource="{Binding steps}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="{Binding text}" MouseDown="SwitchStepsBranchClick" />
-                                    </StackPanel>
-                                </HierarchicalDataTemplate>
-                            </TreeView.ItemTemplate>
-                        </TreeView>
+                        <ListBox x:Name="ResponseOptionsControl">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type sceneObjects:Response}">
+                                    <Label Content="{Binding text}" MouseDown="SwitchStepsBranchClick"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                         <Button Click="ReturnToOriginClick" Visibility="{Binding IsOriginButtonVisible}">Return to origin</Button>
                     </StackPanel>
                 </Grid>
