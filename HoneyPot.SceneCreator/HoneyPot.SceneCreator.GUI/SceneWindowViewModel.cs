@@ -91,6 +91,22 @@ namespace HoneyPot.SceneCreator.GUI
         
         public void Export()
         {
+            if (CurrentTreePath != "0")
+            {
+                StepTree.SetStepsForBranch(Steps, CurrentTreePath);
+
+                var originScene = new Scene()
+                {
+                    author = StepTree.Author,
+                    name = StepTree.Name,
+                    steps = new List<Step>(StepTree.Steps["0"])
+                };
+
+                OpenScene(originScene);
+
+                CurrentTreePath = "0";
+            }
+
             var sortedList = StepTree.Steps.Keys.GroupBy(k => k.Split('#').Length);
             
             foreach (var innerList in sortedList)
