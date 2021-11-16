@@ -31,7 +31,7 @@ namespace HoneyPot.SceneCreator.GUI
             CurrentTreePath = "0";
         }
 
-        public void OpenScene(Scene scene)
+        public void OpenScene(Scene scene, StepTree tree = null)
         {
             currScene = scene;
 
@@ -43,6 +43,11 @@ namespace HoneyPot.SceneCreator.GUI
                 {
                     Steps.Add(sceneStep);
                 }
+            }
+
+            if (tree != null)
+            {
+                StepTree = tree;
             }
 
             CurrentResponseDepthString = "Origin";

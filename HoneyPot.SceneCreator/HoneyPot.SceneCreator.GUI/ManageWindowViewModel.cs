@@ -25,7 +25,7 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void New()
         {
-            onOpenScene.Invoke(new Scene() {name = "myScene", author = "myself"});
+            onOpenScene.Invoke(new Scene() {name = "myScene", author = "myself"}, null);
             Visible = false;
         }
 
@@ -41,7 +41,9 @@ namespace HoneyPot.SceneCreator.GUI
                 {
                     var toLoad = JsonConvert.DeserializeObject<Scene>(File.ReadAllText(loadFileDialog.FileName));
 
-                    onOpenScene.Invoke(toLoad);
+                    var stepTree = SetStepTree(toLoad);
+
+                    onOpenScene.Invoke(toLoad, stepTree);
                     Visible = false;
                 }
                 catch (Exception e)
@@ -51,6 +53,28 @@ namespace HoneyPot.SceneCreator.GUI
             };
 
             loadFileDialog.ShowDialog();
+        }
+
+        private StepTree SetStepTree(Scene scene)
+        {
+            var tree = new StepTree();
+
+            tree.AddOrigin(scene.steps, scene.name, scene.author);
+
+            foreach (var sceneStep in scene.steps)
+            {
+                if (sceneStep.type == StepType.ResponseOptions)
+                {
+                    foreach (var sceneStepResponse in sceneStep.responses)
+                    {
+                        var branchName = "0#" + sceneStepResponse.text;
+                        tree.AddBranch(branchName);
+                        tree.SetStepsForBranch(sceneStepResponse.steps, branchName);
+                    }
+                }
+            }
+
+            return tree;
         }
 
         private void Back()
