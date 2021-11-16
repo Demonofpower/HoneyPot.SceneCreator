@@ -111,9 +111,9 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                      Visibility="{Binding IsStepVisible}">
-                    <StackPanel>
+                <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Visibility="{Binding IsStepNotVisible}">To start create a new step..</Label>
+                    <StackPanel Visibility="{Binding IsStepVisible}">
                         <Label x:Name="CurrentStepLabel" />
                         <ComboBox x:Name="CurrentStepTypeComboBox"
                                   SelectionChanged="CurrentStepTypeComboBox_OnSelectionChanged" />

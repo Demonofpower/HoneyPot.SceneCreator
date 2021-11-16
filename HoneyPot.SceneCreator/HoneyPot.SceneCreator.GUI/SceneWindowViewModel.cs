@@ -487,10 +487,15 @@ namespace HoneyPot.SceneCreator.GUI
                 OnPropertyChanged(nameof(NewLoc));
 
                 OnPropertyChanged(nameof(IsStepVisible));
+                OnPropertyChanged(nameof(IsStepNotVisible));
             }
         }
 
         public Visibility IsStepVisible => SelectedStep != null && Steps.Contains(SelectedStep)
+            ? Visibility.Visible
+            : Visibility.Collapsed;
+        
+        public Visibility IsStepNotVisible => SelectedStep == null || !Steps.Contains(SelectedStep)
             ? Visibility.Visible
             : Visibility.Collapsed;
 
