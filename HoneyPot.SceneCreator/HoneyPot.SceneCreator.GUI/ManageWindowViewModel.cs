@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
@@ -61,15 +62,24 @@ namespace HoneyPot.SceneCreator.GUI
 
             tree.AddOrigin(scene.steps, scene.name, scene.author);
 
-            foreach (var sceneStep in scene.steps)
+            tree = RecursiveTreeHandler(tree, scene.steps, "0");
+
+            return tree;
+        }
+
+        private StepTree RecursiveTreeHandler(StepTree tree, List<Step> steps, string currentDepthName)
+        {
+            foreach (var sceneStep in steps)
             {
                 if (sceneStep.type == StepType.ResponseOptions)
                 {
                     foreach (var sceneStepResponse in sceneStep.responses)
                     {
-                        var branchName = "0#" + sceneStepResponse.text;
+                        var branchName = currentDepthName + "#" + sceneStepResponse.text;
                         tree.AddBranch(branchName);
                         tree.SetStepsForBranch(sceneStepResponse.steps, branchName);
+
+                        tree = RecursiveTreeHandler(tree, sceneStepResponse.steps, branchName);
                     }
                 }
             }
