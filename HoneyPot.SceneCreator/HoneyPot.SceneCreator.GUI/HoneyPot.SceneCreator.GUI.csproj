@@ -199,67 +199,67 @@
     </AdditionalFiles>
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="Resources\Locations\Bar_Lounge.jpg">
+    <AdditionalFiles Include="Resources\Locations\Bar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Botanical_Garden.jpg">
+    <AdditionalFiles Include="Resources\Locations\Garden.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Corkscrew_Carnival.jpg">
+    <AdditionalFiles Include="Resources\Locations\Carnival.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Dawnwood_Park.jpg">
+    <AdditionalFiles Include="Resources\Locations\DPark.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Farmer_Market.jpg">
+    <AdditionalFiles Include="Resources\Locations\Market.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Fitness_Club.jpg">
+    <AdditionalFiles Include="Resources\Locations\Gym.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Gold_Falls_Casino.jpg">
+    <AdditionalFiles Include="Resources\Locations\Casino.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Hiking_Trails.jpg">
+    <AdditionalFiles Include="Resources\Locations\Trail.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Hot_Spring.jpg">
+    <AdditionalFiles Include="Resources\Locations\Spring.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Ice_Rink.jpg">
+    <AdditionalFiles Include="Resources\Locations\Rink.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Lusties_Nightclub.jpg">
+    <AdditionalFiles Include="Resources\Locations\Nightclub.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
     <AdditionalFiles Include="Resources\Locations\Mall.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\My_Bedroom.jpg">
+    <AdditionalFiles Include="Resources\Locations\Bedroom.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Nutmeg_Cafe.jpg">
+    <AdditionalFiles Include="Resources\Locations\Cafe.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Outdoor_Lounge.jpg">
+    <AdditionalFiles Include="Resources\Locations\Lounge.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Scenic_Overlook.jpg">
+    <AdditionalFiles Include="Resources\Locations\Overlook.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Tennis_Court.jpg">
+    <AdditionalFiles Include="Resources\Locations\Courts.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Turtle_Bay_Beach.jpg">
+    <AdditionalFiles Include="Resources\Locations\Beach.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\University_Campus.jpg">
+    <AdditionalFiles Include="Resources\Locations\Campus.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Vinnies_Restaurant.jpg">
+    <AdditionalFiles Include="Resources\Locations\Restaurant.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
-    <AdditionalFiles Include="Resources\Locations\Water_Park.jpg">
+    <AdditionalFiles Include="Resources\Locations\WPark.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>
   </ItemGroup>
