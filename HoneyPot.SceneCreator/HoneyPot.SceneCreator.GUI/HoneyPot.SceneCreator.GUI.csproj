@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="Helper\BaseViewModel.cs" />
     <Compile Include="Helper\CommandManager.cs" />
+    <Compile Include="Helper\EnumCollectionExtension.cs" />
     <Compile Include="Helper\StepTree.cs" />
     <Compile Include="Helper\PropertyVisibilityManager.cs" />
     <Compile Include="Helper\RelayCommand.cs" />

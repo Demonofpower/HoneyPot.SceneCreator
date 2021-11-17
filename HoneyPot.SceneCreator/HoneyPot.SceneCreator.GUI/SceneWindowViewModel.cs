@@ -489,6 +489,20 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public DressType DressType
+        {
+            get => selectedStep?.dressType ?? DressType.Full;
+            set
+            {
+                if (Equals(value, selectedStep?.dressType)) return;
+                if (selectedStep == null) return;
+                
+                selectedStep.dressType = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         public List<Response> Responses { get; set; }
 
 
