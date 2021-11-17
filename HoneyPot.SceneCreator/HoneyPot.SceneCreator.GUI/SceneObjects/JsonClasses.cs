@@ -52,6 +52,7 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
 
         public int idleTimeInMs { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public DressType dressType { get; set; }
 
         public override string ToString()

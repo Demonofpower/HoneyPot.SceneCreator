@@ -473,6 +473,22 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public string IdleTimeInMs
+        {
+            get => selectedStep?.idleTimeInMs.ToString();
+            set
+            {
+                if (Equals(value, selectedStep.idleTimeInMs.ToString())) return;
+
+                if (int.TryParse(value, out var timeInMs))
+                {
+                    selectedStep.idleTimeInMs = timeInMs;
+                }
+                
+                OnPropertyChanged();
+            }
+        }
+
         public List<Response> Responses { get; set; }
 
 

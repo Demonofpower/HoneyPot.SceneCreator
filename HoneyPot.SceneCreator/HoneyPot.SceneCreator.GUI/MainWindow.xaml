@@ -182,6 +182,12 @@
                             <TextBox Text="{Binding ResponseText}" MinWidth="60" />
                             <Button Command="{Binding CommandManager.AddResponsesCommand}">Add</Button>
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding VisibilityManager.IdleVisibility}">
+                            <Label>Idle time in MS</Label>
+                            <TextBox Text="{Binding IdleTimeInMs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     MinWidth="100" />
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
 

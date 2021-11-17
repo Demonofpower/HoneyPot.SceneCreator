@@ -28,6 +28,7 @@ namespace HoneyPot.SceneCreator.GUI.Helper
             OnPropertyChanged(nameof(NewLocationVisibility));
             OnPropertyChanged(nameof(ExistingDialogVisibility));
             OnPropertyChanged(nameof(ResponsesVisibility));
+            OnPropertyChanged(nameof(IdleVisibility));
         }
 
         private Visibility GetVisibility(string property)
@@ -56,6 +57,8 @@ namespace HoneyPot.SceneCreator.GUI.Helper
                     return stepType == StepType.ExistingDialogLine ? Visibility.Visible : Visibility.Collapsed;
                 case nameof(ResponsesVisibility):
                     return stepType == StepType.ResponseOptions ? Visibility.Visible : Visibility.Collapsed;
+                case nameof(IdleVisibility):
+                    return stepType == StepType.Idle ? Visibility.Visible : Visibility.Collapsed;
                 default:
                     throw new InvalidOperationException("Unknown property");
             }
@@ -72,5 +75,6 @@ namespace HoneyPot.SceneCreator.GUI.Helper
         public Visibility NewLocationVisibility => GetVisibility(nameof(NewLocationVisibility));
         public Visibility ExistingDialogVisibility => GetVisibility(nameof(ExistingDialogVisibility));
         public Visibility ResponsesVisibility => GetVisibility(nameof(ResponsesVisibility));
+        public Visibility IdleVisibility => GetVisibility(nameof(IdleVisibility));
     }
 }
