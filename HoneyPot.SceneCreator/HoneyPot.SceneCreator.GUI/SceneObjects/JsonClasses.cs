@@ -50,6 +50,10 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
 
         public int dialogId { get; set; }
 
+        public int idleTimeInMs { get; set; }
+
+        public DressType dressType { get; set; }
+
         public override string ToString()
         {
             return id.ToString();
@@ -81,7 +85,9 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
         DialogLine,
         Travel,
         ResponseOptions,
-        ExistingDialogLine
+        ExistingDialogLine,
+        Idle,
+        Undress
     }
 
     public enum GirlExpressionType
@@ -94,5 +100,14 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
         CONFUSED,
         HORNY,
         SICK,
+    }
+    public enum DressType
+    {
+        Full,
+        FullWithBra,
+        Underwear,
+        BraOnly,
+        PantiesOnly,
+        Nude
     }
 }
