@@ -31,7 +31,7 @@ namespace HoneyPot.SceneCreator.GUI
             CurrentTreePath = "0";
         }
 
-        public void OpenScene(Scene scene, StepTree tree = null)
+        public void OpenScene(Scene scene, StepTree tree = null, string newResponseDepthString = "Origin")
         {
             currScene = scene;
 
@@ -50,7 +50,7 @@ namespace HoneyPot.SceneCreator.GUI
                 StepTree = tree;
             }
 
-            CurrentResponseDepthString = "Origin";
+            CurrentResponseDepthString = newResponseDepthString;
 
             Visible = true;
             OnPropertyChanged(nameof(Name));

@@ -95,6 +95,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
+                        <Button Click="ReturnToLastClick" Visibility="{Binding IsOriginButtonVisible}">Return to last</Button>
                         <Button Click="ReturnToOriginClick" Visibility="{Binding IsOriginButtonVisible}">Return to origin</Button>
                     </StackPanel>
                 </Grid>
@@ -113,7 +114,7 @@
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Label Visibility="{Binding IsStepNotVisible}">To start create a new step..</Label>
+                    <Label Visibility="{Binding IsStepNotVisible}">To start create a new step or open a existing one..</Label>
                     <StackPanel Visibility="{Binding IsStepVisible}">
                         <Label x:Name="CurrentStepLabel" />
                         <ComboBox x:Name="CurrentStepTypeComboBox"

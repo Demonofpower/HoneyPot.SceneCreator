@@ -24,6 +24,9 @@ namespace HoneyPot.SceneCreator.GUI
             MainWindowViewModel = new MainWindowViewModel();
             InitializeComponent();
 
+            branchStack = new Stack<Tuple<string, string>>();
+            branchStack.Push(new Tuple<string, string>("0", "Origin"));
+
             CurrentStepTypeComboBox.ItemsSource = typeof(StepType).GetEnumNames();
 
             ResponseOptionsControl.ItemsSource = MainWindowViewModel.SceneWindowViewModel.Responses;
@@ -159,6 +162,9 @@ namespace HoneyPot.SceneCreator.GUI
             UpdateStepsListItemSource();
         }
 
+
+        private readonly Stack<Tuple<string, string>> branchStack;
+
         private void SwitchStepsBranchClick(object sender, MouseButtonEventArgs e)
         {
             if (!(sender is Label label))
@@ -197,6 +203,8 @@ namespace HoneyPot.SceneCreator.GUI
 
             scene.Responses = new List<Response>();
 
+            branchStack.Push(new Tuple<string, string>(newTreePath, responseText));
+
             UpdateStepsListItemSource();
             UpdateStepsList();
             UpdateResponseItemsSource();
@@ -205,26 +213,43 @@ namespace HoneyPot.SceneCreator.GUI
 
         private void ReturnToOriginClick(object sender, RoutedEventArgs e)
         {
+            ReturnTo("0", "Origin");
+            
+            branchStack.Clear();
+            branchStack.Push(new Tuple<string, string>("0", "Origin"));
+        }
+
+        private void ReturnToLastClick(object sender, RoutedEventArgs e)
+        {
+            branchStack.Pop();
+
+            var newBranch = branchStack.Peek();
+
+            ReturnTo(newBranch.Item1, newBranch.Item2);
+        }
+
+        private void ReturnTo(string to, string text)
+        {
             var scene = MainWindowViewModel.SceneWindowViewModel;
 
             scene.StepTree.SetStepsForBranch(scene.Steps, scene.CurrentTreePath);
 
-            var originScene = new Scene()
+            var toScene = new Scene()
             {
                 author = scene.StepTree.Author,
                 name = scene.StepTree.Name,
-                steps = new List<Step>(scene.StepTree.Steps["0"])
+                steps = new List<Step>(scene.StepTree.Steps[to])
             };
 
-            scene.OpenScene(originScene);
+            scene.OpenScene(toScene, newResponseDepthString:text);
 
-            scene.CurrentTreePath = "0";
+            scene.CurrentTreePath = to;
 
             foreach (var sceneStep in scene.Steps)
             {
                 sceneStep.IsCurrentlySelected = false;
             }
-            
+
             UpdateStepsListItemSource();
             UpdateStepsList();
             UpdateResponseItemsSource();

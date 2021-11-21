@@ -3,7 +3,7 @@ using HoneyPot.SceneCreator.GUI.SceneObjects;
 
 namespace HoneyPot.SceneCreator.GUI
 {
-    public delegate void OpenSceneEventHandler(Scene scene, StepTree tree);
+    public delegate void OpenSceneEventHandler(Scene scene, StepTree tree = null, string newResponseDepthString = "Origin");
     public delegate void CloseSceneEventHandler();
     
     public class MainWindowViewModel
