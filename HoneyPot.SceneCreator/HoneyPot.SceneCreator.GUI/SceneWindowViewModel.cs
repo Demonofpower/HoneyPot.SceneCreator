@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media;
 using HoneyPot.SceneCreator.GUI.Helper;
 using HoneyPot.SceneCreator.GUI.SceneObjects;
 using HoneyPot.SceneCreator.GUI.Selection;

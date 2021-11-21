@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using HoneyPot.SceneCreator.GUI.Helper;
@@ -22,6 +23,8 @@ namespace HoneyPot.SceneCreator.GUI
             NewCommand = new RelayCommand(New);
             LoadCommand = new RelayCommand(Load);
             BackCommand = new RelayCommand(Back);
+            ModGithubCommand = new RelayCommand(ModGithub);
+            CreatorGithubCommand = new RelayCommand(CreatorGithub);
         }
 
         private void New()
@@ -93,8 +96,20 @@ namespace HoneyPot.SceneCreator.GUI
             Visible = true;
         }
 
+        private void ModGithub()
+        {
+            Process.Start(@"https://github.com/Demonofpower/HoneyPot");
+        }
+
+        private void CreatorGithub()
+        {
+            Process.Start(@"https://github.com/Demonofpower/HoneyPot.SceneCreator");
+        }
+
         public RelayCommand NewCommand { get; }
         public RelayCommand LoadCommand { get; }
         public RelayCommand BackCommand { get; }
+        public RelayCommand ModGithubCommand { get; }
+        public RelayCommand CreatorGithubCommand { get; }
     }
 }
