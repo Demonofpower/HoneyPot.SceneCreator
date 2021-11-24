@@ -501,6 +501,17 @@ namespace HoneyPot.SceneCreator.GUI
             }
         }
 
+        public bool AltGirlDressChange
+        {
+            get => SelectedStep?.altGirlDressChange ?? false;
+            set
+            {
+                if (Equals(value, SelectedStep.altGirlDressChange)) return;
+                SelectedStep.altGirlDressChange = value;
+                OnPropertyChanged();
+            }
+        }
+
         public List<Response> Responses { get; set; }
 
 

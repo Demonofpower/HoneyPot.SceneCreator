@@ -199,11 +199,18 @@
                             <TextBox Text="{Binding IdleTimeInMs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      MinWidth="100" />
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding VisibilityManager.UndressVisibility}">
-                            <Label>Type: </Label>
-                            <ComboBox ItemsSource="{helper:EnumCollection EnumType=sceneObjects:DressType}"
-                                      SelectedItem="{Binding DressType}" />
+                        <StackPanel Orientation="Vertical" Visibility="{Binding VisibilityManager.UndressVisibility}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Type:</Label>
+                                <ComboBox ItemsSource="{helper:EnumCollection EnumType=sceneObjects:DressType}"
+                                          SelectedItem="{Binding DressType}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Alt girl:</Label>
+                                <CheckBox
+                                    IsChecked="{Binding AltGirlDressChange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    VerticalAlignment="Center" />
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

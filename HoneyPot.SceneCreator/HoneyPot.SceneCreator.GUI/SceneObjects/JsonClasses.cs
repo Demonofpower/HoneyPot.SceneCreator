@@ -55,6 +55,8 @@ namespace HoneyPot.SceneCreator.GUI.SceneObjects
         [JsonConverter(typeof(StringEnumConverter))]
         public DressType dressType { get; set; }
 
+        public bool altGirlDressChange { get; set; }
+
         public override string ToString()
         {
             return id.ToString();
